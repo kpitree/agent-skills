@@ -3,7 +3,17 @@
   "mcpServers": {
     "kpitree": {
       "type": "streamable-http",
-      "url": "https://mcp.kpitree.co/mcp"
+      "url": "https://mcp.kpitree.co/mcp",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "oauth",
+            "client": {
+              "mode": "dcr"
+            }
+          }
+        }
+      }
     }
   }
 }

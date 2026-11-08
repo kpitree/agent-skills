@@ -1,0 +1,3 @@
+interface:
+  display_name: "KPI Tree basics"
+  short_description: "Route any KPI Tree question to the right tool"

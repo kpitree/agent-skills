@@ -1,0 +1,3 @@
+interface:
+  display_name: "Build KPI trees"
+  short_description: "Create, reshape and clone KPI trees"

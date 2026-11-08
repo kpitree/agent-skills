@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "kpitree",
   "version": "1.0.0",
-  "description": "Investigate your business metrics, their drivers and the recorded reasons behind them in KPI Tree, and write what you learn back. Includes 6 skills, 3 agents and 4 commands for metric investigation, segment questions, business reviews, recording context and building KPI trees.",
+  "description": "Investigate your business metrics, their drivers and the recorded reasons behind them in KPI Tree, and write what you learn back. Includes 7 skills, 3 agents and 4 commands for metric investigation, segment questions, business reviews, recording context and building KPI trees.",
   "author": {
     "name": "KPI Tree",
     "email": "support@kpitree.co",
@@ -11,5 +11,48 @@
   "homepage": "https://kpitree.co",
   "repository": "https://github.com/kpitree/agent-skills",
   "license": "MIT",
-  "keywords": ["kpi", "metrics", "analytics", "decision-intelligence", "business-performance", "okr", "dbt", "semantic-layer", "mcp"]
+  "keywords": [
+    "kpi",
+    "metrics",
+    "analytics",
+    "decision-intelligence",
+    "business-performance",
+    "okr",
+    "dbt",
+    "semantic-layer",
+    "mcp"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "KPI Tree",
+        "shortDescription": "Metrics, drivers and the why",
+        "longDescription": "KPI Tree is a decision intelligence platform: it connects a business's metrics to the people who own them, the strategy they serve, and the recorded business context that explains why they move. This plugin gives ChatGPT the KPI Tree connector and the skills that teach it to use KPI Tree the way it is meant to be used.\n\nAsk how a metric is doing or why it changed and ChatGPT runs the full investigation: what moved and on which horizons, which driver or segment is responsible, what the organisation has recorded as the reason, what is already being done, and one recommended action with its owner. Ask what to look at today and it reads the briefing compiled across every metric that morning, and can accept or dismiss the actions it proposed on your say-so. Tell it something you know about the business and it records it, so the next analysis starts from what the organisation knows. It also runs weekly and monthly business reviews across objectives, initiatives and the portfolio, answers questions about one site, region or product line, and builds and clones KPI trees.\n\nYou sign in with your own KPI Tree account through OAuth; every call runs with your own role and permissions, and nothing is sent anywhere but your KPI Tree workspace. Your workspace must have AI assistant connections switched on, which a workspace admin controls.",
+        "developerName": "KPI Tree",
+        "category": "Productivity",
+        "capabilities": [
+          "Investigate why a metric moved, across every horizon, down to the driver or segment responsible",
+          "Explain a metric through the business context the organisation has recorded",
+          "Read this morning's briefing and act on the actions it proposed",
+          "Run a weekly or monthly business review across objectives, initiatives and the portfolio",
+          "Answer questions about one site, region, product line or tier",
+          "Record facts about the business so later analysis starts from them",
+          "Build, extend and clone KPI trees"
+        ],
+        "defaultPrompt": [
+          "How is revenue doing this month?",
+          "What should I look at today?",
+          "Why did conversion rate drop last week?"
+        ],
+        "brandColor": "#326F5D",
+        "brandColorDark": "#326F5D",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/icon.png",
+        "websiteURL": "https://kpitree.co",
+        "supportURL": "https://kpitree.co",
+        "privacyPolicyURL": "https://cdn.kpitree.co/legal/privacy-policy.pdf",
+        "termsOfServiceURL": "https://cdn.kpitree.co/legal/terms-of-service.pdf"
+      }
+    }
+  }
 }

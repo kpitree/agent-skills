@@ -1,0 +1,3 @@
+interface:
+  display_name: "Record and act"
+  short_description: "Write facts back, manage tasks and approvals"

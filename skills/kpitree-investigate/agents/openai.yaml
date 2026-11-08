@@ -1,0 +1,3 @@
+interface:
+  display_name: "Investigate a metric"
+  short_description: "What moved, which driver, the recorded why"
