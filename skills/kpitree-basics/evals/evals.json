@@ -1,0 +1,54 @@
+{
+  "version": "1",
+  "skill_name": "kpitree-basics",
+  "cases": [
+    {
+      "id": "1",
+      "question": "Who owns the Gross Margin metric in KPI Tree, and who do they report to?",
+      "expected_skill": "kpitree-basics",
+      "expected_behavior": [
+        "The agent resolves the metric by name with search_metrics rather than guessing an identifier",
+        "The agent reads the RACI from analyze_metric, including team, department and manager",
+        "The answer names people, never UUIDs"
+      ],
+      "ground_truth": "A single-fact ownership question: one analyze_metric call answers it from the RACI."
+    },
+    {
+      "id": "2",
+      "question": "Is there a data issue with our KPI Tree metrics this morning? A few numbers look stale.",
+      "expected_skill": "kpitree-basics",
+      "expected_behavior": [
+        "The agent starts with analyze_metric on the metrics named, reading pipeline health and blast radius",
+        "The agent does not start in the warehouse",
+        "The agent distinguishes a stale pipeline from a real change in the number"
+      ]
+    },
+    {
+      "id": "3",
+      "question": "What is revenue month to date in KPI Tree?",
+      "expected_skill": "kpitree-basics",
+      "expected_behavior": [
+        "The agent answers a single-fact question with one analyze_metric call",
+        "The agent quotes the month-to-date figure with the to-date-versus-previous comparison, never month on month"
+      ]
+    },
+    {
+      "id": "4",
+      "question": "Which KPI Tree tools can I use as a viewer? The assistant keeps telling me a tool is off.",
+      "expected_skill": "kpitree-basics",
+      "expected_behavior": [
+        "The agent explains the viewer, editor and admin roles and the features a workspace may not have switched on",
+        "The agent says a refused tool is off for this person or workspace and does not tell a viewer to run an editor tool"
+      ]
+    },
+    {
+      "id": "5",
+      "question": "Show me our metric structure in KPI Tree.",
+      "expected_skill": "kpitree-basics",
+      "expected_behavior": [
+        "The agent lists the trees with list_trees and opens the relevant one with get_tree",
+        "The agent describes the structure by metric name"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+# Eval run artifacts, never committed: transcripts can carry workspace data.
+evals/results/
+# Tier 1 routing results, written by CI.
+routing-results.json

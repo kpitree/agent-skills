@@ -1,0 +1,1 @@
+{"recorded": true, "item": {"summary": "{{input.text}}", "attached_to": ["Consultations (Leeds)", "Revenue"], "people": ["Priya Shah"], "confidential": true, "reason": "HR-adjacent facts are stored owners-only"}}

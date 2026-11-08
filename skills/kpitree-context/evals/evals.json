@@ -1,0 +1,60 @@
+{
+  "version": "1",
+  "skill_name": "kpitree-context",
+  "cases": [
+    {
+      "id": "1",
+      "question": "Record that Bob is off sick this week; his branch's consultations will be down.",
+      "expected_skill": "kpitree-context",
+      "expected_behavior": [
+        "The agent records the fact at once with add_context, attached to the metric it concerns",
+        "The agent confirms what was recorded by name and says it was stored owners-only"
+      ],
+      "ground_truth": "A durable fact about the business stated by the person: add_context, immediately."
+    },
+    {
+      "id": "2",
+      "question": "We launched the new pricing page on Tuesday, make sure the assistant knows that when it looks at conversion.",
+      "expected_skill": "kpitree-context",
+      "expected_behavior": [
+        "The agent writes the launch back with add_context against the conversion metric",
+        "The agent does not run an analysis the person did not ask for"
+      ]
+    },
+    {
+      "id": "3",
+      "question": "I think marketing spend is driving sign-ups. Can you register that as a driver relationship in KPI Tree?",
+      "expected_skill": "kpitree-context",
+      "expected_behavior": [
+        "The agent verifies with verify_driver_relationship first",
+        "If refuted the agent does not assert it; otherwise it registers it with propose_context_hypothesis and says it observes until verified",
+        "The agent never states an unverified causal relationship as fact"
+      ]
+    },
+    {
+      "id": "4",
+      "question": "That note about the warehouse outage in KPI Tree is wrong, it was the courier not the warehouse. Fix it.",
+      "expected_skill": "kpitree-context",
+      "expected_behavior": [
+        "The agent retracts the wrong item with retract_context_item and records the corrected fact with add_context"
+      ]
+    },
+    {
+      "id": "5",
+      "question": "Nobody owns the Refund Rate metric. Can you make Priya responsible for it?",
+      "expected_skill": "kpitree-context",
+      "expected_behavior": [
+        "The agent resolves the person with list_users and reads the current RACI with get_metric before writing",
+        "The agent sends the merged full list with update_metric, or explains that the editor role is needed"
+      ]
+    },
+    {
+      "id": "6",
+      "question": "Pull what we learned from the #ops Slack channel into KPI Tree.",
+      "expected_skill": "kpitree-context",
+      "expected_behavior": [
+        "The agent uses ingest_context_from_source where the person is an admin, and otherwise records the facts with add_context"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "kpitree": {
+      "type": "http",
+      "url": "https://mcp.kpitree.co/mcp"
+    }
+  }
+}

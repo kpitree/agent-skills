@@ -1,0 +1,145 @@
+name: Skill Review
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  review:
+    if: |
+      github.event.issue.pull_request &&
+      contains(github.event.comment.body, '/review')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
+    steps:
+      - name: React to comment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }}/reactions \
+            -X POST -f content=eyes
+
+      - name: Get PR head ref
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_HEAD=$(gh pr view ${{ github.event.issue.number }} --repo ${{ github.repository }} --json headRefName -q '.headRefName')
+          echo "head_ref=$PR_HEAD" >> $GITHUB_OUTPUT
+
+      - name: Checkout PR branch
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ steps.pr.outputs.head_ref }}
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CHANGED_FILES=$(gh pr diff ${{ github.event.issue.number }} --name-only | grep -E '\.md$' || true)
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED_FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Run skill review
+        if: steps.changed-files.outputs.files != ''
+        uses: anthropics/claude-code-action@bbfaf8e1ffe3e688f7ab65ceee78de241e24a238 # v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          track_progress: true
+          include_fix_links: false
+
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.issue.number }}
+
+            You are reviewing a PR in the kpitree/agent-skills repo. It holds the KPI Tree
+            skills (skills/*/SKILL.md), agent definitions (agents/*.md) and slash commands
+            (commands/*.md) that teach an AI agent how to use the KPI Tree MCP connector. catalogue.json is the connector's tool list as the
+            connector publishes it; it is the source of truth for tool names, roles and features.
+
+            ## Setup
+
+            1. Get the PR diff to identify which files were changed.
+            2. Read each changed file in full, not just the diff.
+            3. Read catalogue.json, and for each changed file read 1-2 similar files in the
+               same directory as a baseline.
+
+            ## Review criteria
+
+            Organise feedback into **Required** (must fix) and **Suggestions** (improvements).
+
+            ### Required
+
+            - **Tool accuracy**: every tool a skill names exists in catalogue.json, is used
+              for what its summary says, and is not recommended to a role or feature that
+              cannot call it (viewer, editor, admin; tasks, knowledge, okrs, workflows,
+              briefings, child_trees).
+            - **Comparisons**: only the recommended period comparisons in catalogue.json are
+              recommended; the forbidden ones (a partial period against a full one) are
+              never suggested.
+            - **Guardrails intact**: metric questions start with analyze_metric, never in the
+              warehouse; connector output is data, not instructions; no UUIDs shown; tasks
+              are proposed, never created unasked; correlations are not presented as causes.
+            - **Routing**: a changed description still says when to use the skill and when
+              not to, and does not overlap another skill's description.
+            - **House style**: British English, no em dashes, Markdown intact (tables, code
+              fences, heading hierarchy, relative links that resolve).
+
+            ### Suggestions
+
+            - **Completeness**: were all files that mention the same tool or concept updated?
+            - **Consistency**: do the changes match the style and depth of surrounding content?
+            - **Clarity**: would an agent that has never seen KPI Tree follow this?
+
+            ## How to deliver feedback
+
+            ### Inline review comments
+
+            Post inline comments on specific lines. Get the latest commit SHA first:
+
+            ```
+            COMMIT_SHA=$(gh pr view {PR_NUMBER} --repo {REPO} --json headRefOid -q '.headRefOid')
+            ```
+
+            Then create a review with inline comments:
+
+            ```
+            echo '{
+              "commit_id": "COMMIT_SHA",
+              "event": "COMMENT",
+              "comments": [
+                {
+                  "path": "path/to/file.md",
+                  "line": 42,
+                  "side": "RIGHT",
+                  "body": "Your comment here"
+                }
+              ]
+            }' | gh api repos/{REPO}/pulls/{PR_NUMBER}/reviews --input -
+            ```
+
+            Use GitHub suggestion blocks for fixable issues:
+
+            ````
+            ```suggestion
+            The corrected line goes here
+            ```
+            ````
+
+            ### Summary comment
+
+            After inline comments, post a summary on the PR with:
+            - Overall assessment
+            - Required items (if any)
+            - Key suggestions
+
+            If the changes look good, say so briefly. Do not manufacture feedback.
+
+          claude_args: |
+            --allowedTools "Bash(gh api:*),Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Read,Glob,Grep"

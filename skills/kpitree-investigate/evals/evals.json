@@ -1,0 +1,72 @@
+{
+  "version": "1",
+  "skill_name": "kpitree-investigate",
+  "cases": [
+    {
+      "id": "1",
+      "question": "How is revenue doing this month?",
+      "expected_skill": "kpitree-investigate",
+      "expected_behavior": [
+        "The agent starts with analyze_metric and reads the decision signals",
+        "The agent reports the move on more than one horizon using the to-date-versus-previous comparisons",
+        "The agent names the mechanism from get_metric_drivers and the recorded why before recommending anything"
+      ],
+      "ground_truth": "A 'how is X doing' question runs the full investigation sequence unless analyze_metric reports stable."
+    },
+    {
+      "id": "2",
+      "question": "Why did conversion rate drop last week?",
+      "expected_skill": "kpitree-investigate",
+      "expected_behavior": [
+        "The agent calls analyze_metric, then get_metric_drivers for the mechanism",
+        "The agent reads the recorded context before speculating about a cause",
+        "The agent checks prior art: tasks, workflow runs and initiatives already targeting the metric"
+      ]
+    },
+    {
+      "id": "3",
+      "question": "Churn has been creeping up for a couple of months. Nothing dramatic, but it is worrying me. What is going on?",
+      "expected_skill": "kpitree-investigate",
+      "expected_behavior": [
+        "The agent treats a drifting status as something to investigate, not as stable",
+        "The agent uses the trailing and to-date comparisons to date the change"
+      ]
+    },
+    {
+      "id": "4",
+      "question": "What drives our average order value?",
+      "expected_skill": "kpitree-investigate",
+      "expected_behavior": [
+        "The agent calls get_metric_drivers once and leads with the mapped drivers",
+        "The agent does not present a statistical correlation as a confirmed cause and never exposes ranking scores"
+      ]
+    },
+    {
+      "id": "5",
+      "question": "Is the fall in bookings seasonal, or is something actually wrong?",
+      "expected_skill": "kpitree-investigate",
+      "expected_behavior": [
+        "The agent reads the same-period-last-year comparisons before attributing the fall to seasonality or ruling it out",
+        "The agent still names the mechanism and the recorded why"
+      ]
+    },
+    {
+      "id": "6",
+      "question": "Has anything been done about the drop in trial sign-ups?",
+      "expected_skill": "kpitree-investigate",
+      "expected_behavior": [
+        "The agent checks get_tasks_for_metric, list_workflows with list_workflow_runs, and list_initiatives before answering",
+        "The agent never says nothing has been done without having looked"
+      ]
+    },
+    {
+      "id": "7",
+      "question": "Break revenue down by sales channel for me.",
+      "expected_skill": "kpitree-investigate",
+      "expected_behavior": [
+        "The agent calls compare_dimension_metrics without a dimension first to discover the dimensions, then with the channel dimension",
+        "The agent reports contribution, not just the per-channel numbers"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "version": "1",
+  "skill_name": "kpitree-segments",
+  "cases": [
+    {
+      "id": "1",
+      "question": "What's going on at the Leeds branch?",
+      "expected_skill": "kpitree-segments",
+      "expected_behavior": [
+        "The agent finds every metric cut to the Leeds branch with search_metrics by dimension value, or dimension_siblings from get_metric_relationships",
+        "The agent analyses the operational metrics for the segment, not only the money one"
+      ],
+      "ground_truth": "A question about one dimension value, answered across every metric measured for it."
+    },
+    {
+      "id": "2",
+      "question": "How is the enterprise tier doing compared with the other tiers?",
+      "expected_skill": "kpitree-segments",
+      "expected_behavior": [
+        "The agent ranks the tiers side by side with compare_dimension_metrics on the tier dimension",
+        "The agent then investigates the enterprise tier's own metrics"
+      ]
+    },
+    {
+      "id": "3",
+      "question": "Which of our stores are struggling this quarter?",
+      "expected_skill": "kpitree-segments",
+      "expected_behavior": [
+        "The agent compares stores against each other on the relevant metric with compare_dimension_metrics",
+        "The agent names the stores and what is moving for each, with the recorded why where there is one"
+      ]
+    },
+    {
+      "id": "4",
+      "question": "Give me a health check on the Germany region across everything we track there.",
+      "expected_skill": "kpitree-segments",
+      "expected_behavior": [
+        "The agent filters by dimension value rather than free text, and checks the spelling with explore_entity if the filter returns nothing",
+        "The agent finishes with one narrative and one recommended action with its owner"
+      ]
+    },
+    {
+      "id": "5",
+      "question": "The product line team says the Pro range is fine but I am not convinced. What do the numbers say for that range?",
+      "expected_skill": "kpitree-segments",
+      "expected_behavior": [
+        "The agent treats the product range as a segment and reads every metric cut to it",
+        "The agent reads the recorded context before judging"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"dimension": "channel", "segments": [{"value": "Online", "metric": "Quote-to-sale conversion", "change_pct": -42.0, "contribution_pct": 88.0}, {"value": "Phone", "metric": "Quote-to-sale conversion", "change_pct": -2.0, "contribution_pct": 12.0}]}

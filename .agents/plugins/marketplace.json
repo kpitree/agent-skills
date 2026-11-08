@@ -1,0 +1,22 @@
+{
+  "name": "kpitree",
+  "owner": {
+    "name": "KPI Tree",
+    "email": "support@kpitree.co"
+  },
+  "plugins": [
+    {
+      "name": "kpitree",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "description": "Investigate your business metrics, their drivers and the recorded reasons behind them in KPI Tree, and write what you learn back. Includes 6 skills, 3 agents and 4 commands for metric investigation, segment questions, business reviews, recording context and building KPI trees.",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

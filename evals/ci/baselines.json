@@ -1,0 +1,7 @@
+{
+  "_comment": "Routing accuracy floors for evals/ci/routing_eval.py, used on main where there is no base branch to pair against. Not yet recorded: run `python3 evals/ci/routing_eval.py --update-baselines` against main and commit the result. Until then the absolute gate is inert; pull requests are gated on regressions against the base branch instead, which does not depend on these numbers.",
+  "min_overall": 0.0,
+  "skills": {},
+  "model": "claude-sonnet-5-5",
+  "samples": 3
+}

@@ -1,0 +1,4 @@
+{
+  "//": "Single source of truth for the version. Every manifest in this repo ships from the same commit and carries this number; run python3 .github/scripts/stamp_versions.py after changing it. See CONTRIBUTING.md.",
+  "version": "1.0.0"
+}

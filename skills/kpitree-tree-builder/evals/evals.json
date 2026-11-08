@@ -1,0 +1,53 @@
+{
+  "version": "1",
+  "skill_name": "kpitree-tree-builder",
+  "cases": [
+    {
+      "id": "1",
+      "question": "Build a KPI tree for customer retention.",
+      "expected_skill": "kpitree-tree-builder",
+      "expected_behavior": [
+        "The agent finds the metrics with search_metrics and checks existing relationships with get_metric_relationships",
+        "The agent describes the proposed tree by metric name and confirms before create_tree",
+        "The agent reads the tree back with get_tree after building it"
+      ],
+      "ground_truth": "A tree build: discover, propose, confirm, create, set edges, read back."
+    },
+    {
+      "id": "2",
+      "question": "Add Net Revenue Retention to the Growth tree under Expansion Revenue.",
+      "expected_skill": "kpitree-tree-builder",
+      "expected_behavior": [
+        "The agent uses add_metric_to_tree and then update_tree_edges so the metric rolls up where asked",
+        "The agent confirms the change before making it"
+      ]
+    },
+    {
+      "id": "3",
+      "question": "Give every store the same KPI tree as the flagship store.",
+      "expected_skill": "kpitree-tree-builder",
+      "expected_behavior": [
+        "The agent uses clone_tree_for_dimension rather than rebuilding per store by hand",
+        "The agent resolves the metrics reported as having no counterpart before retrying"
+      ]
+    },
+    {
+      "id": "4",
+      "question": "Change how the metrics in our marketing tree roll up: paid and organic should both feed total leads.",
+      "expected_skill": "kpitree-tree-builder",
+      "expected_behavior": [
+        "The agent reads the tree with get_tree, then sets the edges with update_tree_edges",
+        "The agent draws only edges the organisation believes, since they become driver evidence"
+      ]
+    },
+    {
+      "id": "5",
+      "question": "Rename the 'Ops' group on the operations tree to 'Fulfilment' and link the company tree to it.",
+      "expected_skill": "kpitree-tree-builder",
+      "expected_behavior": [
+        "The agent uses rename_group for the canvas group and link_tree_node for the link, noting the link is navigation only",
+        "The agent does not confuse a canvas group with a directory group"
+      ]
+    }
+  ]
+}

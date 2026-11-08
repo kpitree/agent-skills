@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "kpitree",
+  "version": "1.0.0",
+  "description": "Investigate your business metrics, their drivers and the recorded reasons behind them in KPI Tree, and write what you learn back. Includes 6 skills, 3 agents and 4 commands for metric investigation, segment questions, business reviews, recording context and building KPI trees.",
+  "author": {
+    "name": "KPI Tree",
+    "email": "support@kpitree.co",
+    "url": "https://kpitree.co"
+  },
+  "homepage": "https://kpitree.co",
+  "repository": "https://github.com/kpitree/agent-skills",
+  "license": "MIT",
+  "keywords": ["kpi", "metrics", "analytics", "decision-intelligence", "business-performance", "okr", "dbt", "semantic-layer", "mcp"]
+}

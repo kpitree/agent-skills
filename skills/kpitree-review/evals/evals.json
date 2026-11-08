@@ -1,0 +1,60 @@
+{
+  "version": "1",
+  "skill_name": "kpitree-review",
+  "cases": [
+    {
+      "id": "1",
+      "question": "Run this week's business review for me.",
+      "expected_skill": "kpitree-review",
+      "expected_behavior": [
+        "The agent starts with get_business_health",
+        "The agent delivers the five-part shape: headline moves, mechanisms and recorded whys, objectives and initiatives, what is in flight, decisions for the room"
+      ],
+      "ground_truth": "A business review, scoped to the whole account unless the person narrows it."
+    },
+    {
+      "id": "2",
+      "question": "How is the business doing overall?",
+      "expected_skill": "kpitree-review",
+      "expected_behavior": [
+        "The agent uses get_business_health for the account-wide picture organised by team"
+      ]
+    },
+    {
+      "id": "3",
+      "question": "Which objectives are at risk this quarter?",
+      "expected_skill": "kpitree-review",
+      "expected_behavior": [
+        "The agent lists objectives and reads each one's outcome lane and execution lane",
+        "The agent treats an objective with no reading yet as awaiting data, never as zero"
+      ]
+    },
+    {
+      "id": "4",
+      "question": "Which initiatives should we double down on, fix or stop?",
+      "expected_skill": "kpitree-review",
+      "expected_behavior": [
+        "The agent uses get_portfolio and reports the verdicts as given",
+        "The agent says impact evidence comes from the calculations pipeline, not self-reporting"
+      ]
+    },
+    {
+      "id": "5",
+      "question": "What needs my attention today?",
+      "expected_skill": "kpitree-review",
+      "expected_behavior": [
+        "The agent uses get_my_briefing and presents the action plan in priority order",
+        "The agent opens a finding only when asked and does not re-analyse metrics the briefing covers"
+      ]
+    },
+    {
+      "id": "6",
+      "question": "Prepare the monthly review pack for the commercial team: what moved, why, and what we should decide.",
+      "expected_skill": "kpitree-review",
+      "expected_behavior": [
+        "The agent scopes the review to the commercial team",
+        "The agent ends with one recommended action per problem with its owner, and offers to record the decisions taken"
+      ]
+    }
+  ]
+}
