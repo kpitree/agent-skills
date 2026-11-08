@@ -19,7 +19,7 @@ Everything here is plain Markdown and a pointer at one remote MCP server. Nothin
 ## Why This Repo
 
 - One shared source of truth for how an assistant should work with KPI Tree, in Claude and in ChatGPT
-- 6 skills covering routing and guardrails, metric investigation, segment questions, recording context, business reviews and tree building
+- 7 skills covering routing and guardrails, metric investigation, segment questions, recording context and tasks, business reviews, the morning briefings and tree building
 - 3 specialised agents for deeper multi-step work
 - 4 slash commands for the routines people run every day and every week
 - A connector tool catalogue, `catalogue.json`, published from the connector itself, so CI knows when a skill names a tool the connector no longer offers
@@ -31,7 +31,7 @@ This repository targets the assistants business people use. KPI Tree's users ask
 | Platform | Install method | Notes |
 |----------|----------------|-------|
 | [Claude](https://claude.ai) (web, desktop, mobile, Cowork) | [Plugin directory](#install-claude) | Skills and commands, with the connector on the plugin's Connectors tab |
-| [Claude Code](https://claude.com/product/claude-code) | [Plugin marketplace](#install-claude-code) | Full plugin: 6 skills, 3 agents, 4 commands and the connector |
+| [Claude Code](https://claude.com/product/claude-code) | [Plugin marketplace](#install-claude-code) | Full plugin: 7 skills, 3 agents, 4 commands and the connector |
 | [ChatGPT](https://chatgpt.com) and [Codex](https://openai.com/codex/) | [Agent Plugin](#install-chatgpt) | Skills and the connector as a plugin, in the Agent Plugins format both load |
 
 Any other assistant that reads [Agent Skills](https://agentskills.io) and remote MCP servers can use the `skills/` directories and the connector address directly; those installs are not documented here.
@@ -69,7 +69,9 @@ The plugin brings the connector with it (`.mcp.json`). The first call opens your
 <a id="install-chatgpt"></a>
 ### ChatGPT and Codex
 
-The repository is an [Agent Plugin](https://agent-plugins.org) (`plugin.json` and `mcp.json` at the root), the format ChatGPT and Codex load, with the skills and the connector bundled. Until KPI Tree is listed in ChatGPT's plugin directory, install it through Codex (the Codex app, or the CLI):
+The repository is an [Agent Plugin](https://agent-plugins.org) (`plugin.json` and `mcp.json` at the root), the format ChatGPT and Codex load, with the skills and the connector bundled. The connector signs you in with OAuth; ChatGPT registers itself with KPI Tree's sign-in service, so there is no client ID or key to paste.
+
+Once KPI Tree is listed in ChatGPT's plugin directory, add it from there. A ChatGPT Enterprise or Workspace admin can also import this repository as a marketplace (Admin, Plugins, Add, Import marketplace, with the repository URL) and make the plugin available to chosen roles. Otherwise install it through Codex (the Codex app, or the CLI):
 
 ```bash
 codex plugin marketplace add kpitree/agent-skills
@@ -99,7 +101,7 @@ codex mcp login kpitree
 
 ## What You Get
 
-### Skills (6)
+### Skills (7)
 
 These activate from natural-language requests:
 
@@ -108,7 +110,8 @@ These activate from natural-language requests:
 | **kpitree-basics** | How to use the connector well: routing any KPI Tree question to the right tool, roles, features and the guardrails |
 | **kpitree-investigate** | The investigation sequence for "how is X doing" and "why did X change": what moved, which driver, the recorded why, prior art, one action |
 | **kpitree-segments** | Questions about one site, branch, region, product line or tier across every metric cut to it |
-| **kpitree-context** | Writing what you learn back: facts, causes, driver hypotheses, retractions, tasks and RACI fixes |
+| **kpitree-context** | Writing what you learn back: facts, causes, driver hypotheses, retractions, tasks and approvals, RACI fixes |
+| **kpitree-briefing** | Reading and acting on the morning briefings: what to look at today, what changed, the personal action plan, accepting or dismissing a proposed action |
 | **kpitree-review** | Weekly and monthly business reviews: health, objectives, initiatives, the portfolio and what is in flight |
 | **kpitree-tree-builder** | Creating, extending, reshaping, cloning and linking KPI trees |
 
@@ -142,6 +145,8 @@ Ask naturally:
 "Why did conversion rate drop last week?"
 "What's going on at the Leeds branch?"
 "What drives our average order value?"
+"What should I look at today?"
+"Go ahead with the nudge to Sam that the briefing suggested."
 "Has anything been done about the drop in trial sign-ups?"
 "Which objectives are at risk this quarter?"
 "Which initiatives should we double down on, fix or stop?"
@@ -220,6 +225,7 @@ agent-skills/
 │   ├── kpitree-segments/
 │   ├── kpitree-context/
 │   ├── kpitree-review/
+│   ├── kpitree-briefing/
 │   └── kpitree-tree-builder/
 │       ├── SKILL.md
 │       └── evals/evals.json   # routing cases for tier 1
