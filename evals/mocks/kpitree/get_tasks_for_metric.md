@@ -1,1 +1,1 @@
-{"tasks": [{"title": "Cover Leeds consultations while the branch manager is away", "status": "open", "assignee": "Sam Patel", "due": "2026-11-14", "metric": "Revenue"}]}
+{"tasks": [{"uuid": "t1a2b3c4-0000-4000-8000-000000000001", "title": "Cover Leeds consultations while the branch manager is away", "status": "open", "assignee": "Sam Patel", "due_date": "2026-11-14", "metric": "Revenue", "required_action": null}]}

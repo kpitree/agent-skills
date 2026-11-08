@@ -1,1 +1,1 @@
-{"workflows": [{"name": "Conversion drop alert", "published": true, "live": true, "trigger": "Quote-to-sale conversion falls 10% week to date"}]}
+{"workflows": [{"uuid": "w1a2b3c4-0000-4000-8000-000000000001", "name": "Conversion drop alert", "owner": "Dana Okafor", "published": true, "live": true, "trigger": "Quote-to-sale conversion falls 10% week to date; posts to #sales-ops and proposes a task"}], "count": 1}

@@ -1,0 +1,1 @@
+{"entities": [{"name": "branch", "dimensions": [{"name": "branch", "values": ["Leeds", "Manchester", "Sheffield", "York"]}], "linked_metrics": ["Revenue (Leeds)", "Consultations (Leeds)", "Quotes issued (Leeds)", "Cancellations (Leeds)"]}]}

@@ -1,1 +1,1 @@
-{"metric": "Revenue", "rows": [{"date": "2026-11-07", "value": 61200, "month_to_date_vs_previous": -17.8}]}
+{"metric": "Revenue", "latest": {"date": "2026-11-07", "value": 61200, "value_formatted": "£61,200"}, "comparisons": {"month_to_date_vs_previous": {"current": 412300, "previous": 501600, "change_pct": -17.8, "_current_start": "2026-11-01", "_current_end": "2026-11-07", "_prev_start": "2026-10-01", "_prev_end": "2026-10-07"}}}

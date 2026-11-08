@@ -1,1 +1,5 @@
-{"recorded": true, "item": {"summary": "{{input.text}}", "attached_to": ["Consultations (Leeds)", "Revenue"], "people": ["Priya Shah"], "confidential": true, "reason": "HR-adjacent facts are stored owners-only"}}
+---
+expect:
+  body: string
+---
+{"recorded": true, "item": {"kind": "absence", "body": "{{input.body}}", "attached_to": ["Consultations (Leeds)", "Revenue (Leeds)"], "people": ["Priya Shah"], "visibility": "owners_only", "reason": "HR-adjacent facts are stored owners-only"}}

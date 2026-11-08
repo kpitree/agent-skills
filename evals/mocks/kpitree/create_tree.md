@@ -1,0 +1,1 @@
+{"created": true, "tree": {"uuid": "tr3a2b3c-0000-4000-8000-000000000003", "name": "{{input.name}}", "nodes": 3, "edges": 0}, "note": "The tree exists with its metrics and no edges yet; set how they roll up with update_tree_edges."}

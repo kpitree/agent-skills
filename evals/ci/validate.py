@@ -31,6 +31,9 @@ EVALS_DIR = ROOT / "evals"
 CATALOGUE_PATH = ROOT / "catalogue.json"
 NEGATIVE_CASES_PATH = EVALS_DIR / "ci" / "negative-cases.json"
 MCP_SERVER_NAME = "kpitree"
+PLUGIN_NAME = "kpitree"
+# How Claude Code names a tool from a plugin-bundled MCP server: mcp__plugin_<plugin>_<server>__<tool>.
+PLUGIN_TOOL_PREFIX = f"mcp__plugin_{PLUGIN_NAME}_{MCP_SERVER_NAME}__"
 
 # Claude Code truncates skill descriptions past this; a longer one is silently
 # clipped mid-sentence, which usually takes the "use this when ..." half with it.
@@ -57,6 +60,7 @@ EXPLAINED_NAMES = {
 
 BACKTICKED = re.compile(r"`([a-z][a-z0-9_]*)`")
 MD_LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+FIXTURE_RE = re.compile(r"\{\{file:fixtures/([^}]+)\{")
 EM_DASH = chr(0x2014)  # the em dash, spelt so this file never contains one
 STOPWORDS = {
     "a", "an", "and", "the", "or", "for", "to", "of", "in", "on", "with", "when",
@@ -164,10 +168,10 @@ def load_catalogue(report: Report) -> dict:
         seen.add(name)
         if not entry.get("title"):
             report.error(where, "has no title (the Claude directory requires one)")
-        if not isinstance(entry.get("read_only"), bool):
-            report.error(where, "does not say whether it reads or writes")
-        if entry.get("read_only") is False and not isinstance(entry.get("destructive"), bool):
-            report.error(where, "is a write tool that does not say whether it is destructive")
+        # Both directories read these; ChatGPT's requires all three as explicit booleans.
+        for flag in ("read_only", "destructive", "open_world"):
+            if not isinstance(entry.get(flag), bool):
+                report.error(where, f"has no explicit {flag} flag")
     for comparison in data.get("comparisons", []):
         if not comparison.get("id"):
             report.error("catalogue.json comparisons", "an entry has no id")
@@ -421,13 +425,38 @@ def check_plugin_eval_cases(tool_names: set[str], report: Report) -> int:
             fields = parse_frontmatter(grader, report)
             if not fields.get("type"):
                 report.error(rel(grader), "frontmatter is missing `type`")
-            tool = fields.get("tool", "")
-            prefix = f"mcp__{MCP_SERVER_NAME}__"
-            if tool.startswith(prefix) and tool.removeprefix(prefix) not in tool_names:
-                report.error(rel(grader), f"grades a tool the connector does not list: {tool}")
-    for mock in sorted((EVALS_DIR / "mocks" / MCP_SERVER_NAME).glob("*.md")):
+            for field in ("tool", "before", "after"):
+                tool = fields.get(field, "")
+                if not tool.startswith("mcp__"):
+                    continue
+                # Claude Code names a plugin-bundled MCP tool after the plugin and the
+                # server key, so a grader written against the bare server key never
+                # matches and the case passes or fails for the wrong reason.
+                if not tool.startswith(PLUGIN_TOOL_PREFIX):
+                    report.error(rel(grader), f"grades {tool}; plugin MCP tools are named {PLUGIN_TOOL_PREFIX}<tool>")
+                elif tool.removeprefix(PLUGIN_TOOL_PREFIX) not in tool_names:
+                    report.error(rel(grader), f"grades a tool the connector does not list: {tool}")
+    mocks_dir = EVALS_DIR / "mocks" / MCP_SERVER_NAME
+    for mock in sorted(mocks_dir.glob("*.md")):
+        if mock.stem.startswith("_"):
+            continue
         if mock.stem not in tool_names:
             report.error(rel(mock), "mocks a tool the connector does not list")
+        # A fixture reference is resolved from the call's arguments at run time; the
+        # fixture family it names must at least exist.
+        for match in FIXTURE_RE.finditer(mock.read_text(encoding="utf-8")):
+            prefix = match.group(1).split("{", 1)[0]
+            if not list((mocks_dir / "fixtures").glob(f"{prefix}*")):
+                report.error(rel(mock), f"names fixtures {prefix}* but none exist")
+    tools_list = mocks_dir / "_tools.json"
+    if tools_list.is_file():
+        try:
+            listed = {entry["name"] for entry in json.loads(tools_list.read_text(encoding="utf-8"))["tools"]}
+        except (json.JSONDecodeError, KeyError, TypeError) as exc:
+            report.error(rel(tools_list), f"is not a tools/list response: {exc!r}")
+        else:
+            if listed != tool_names:
+                report.error(rel(tools_list), "lists different tools from catalogue.json; regenerate both together")
     return cases
 
 

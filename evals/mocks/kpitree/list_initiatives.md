@@ -1,1 +1,1 @@
-{"initiatives": [], "count": 0}
+{"initiatives": [{"uuid": "i1a2b3c4-0000-4000-8000-000000000001", "name": "Online pricing simplification", "owner": "Lee Grant", "status": "in_progress", "budget": 40000, "spent": 12500, "targets": ["Quote-to-sale conversion", "Revenue"], "impact_evidence": "awaiting data", "started": "2026-10-20"}], "count": 1}
