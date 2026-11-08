@@ -28,6 +28,8 @@ metrics the organisation believes drive which, so an edge you draw becomes evide
 - Tree editing needs the editor role. Where a tool refuses on role, say so and offer the
   read-only view instead; never tell a viewer to run an editor tool.
 - Canvas groups are not directory groups and not a person's team or department.
+- `delete_tree` is permanent: only on an explicit request naming the tree, after
+  confirming, and never as a step in reshaping one.
 - A linked node (child_trees feature) is navigation only; nothing rolls up through it.
 - Never show UUIDs.
 

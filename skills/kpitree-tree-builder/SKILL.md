@@ -43,5 +43,12 @@ partial tree, and names the metrics that have no counterpart; resolve those firs
 another tree, so a company tree can link out to per-segment trees. Navigation only;
 nothing rolls up through a link.
 
+## Deleting a tree
+
+`delete_tree` is permanent: the canvas, its nodes, edges and groups go together and
+nothing brings them back. Use it only when the person asks to delete that tree by name,
+after confirming, and never as a step in reshaping one: `remove_metric_from_tree`,
+`update_tree_edges` and `rename_tree` cover every change short of deletion.
+
 Before any edit, say what will change and confirm with the person. After the edit,
 read the tree back with `get_tree` and describe it by name, never by UUID.

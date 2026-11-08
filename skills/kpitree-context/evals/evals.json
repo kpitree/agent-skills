@@ -55,6 +55,24 @@
       "expected_behavior": [
         "The agent uses ingest_context_from_source where the person is an admin, and otherwise records the facts with add_context"
       ]
+    },
+    {
+      "id": "7",
+      "question": "Approve the budget approval the workflow raised for me yesterday.",
+      "expected_skill": "kpitree-context",
+      "expected_behavior": [
+        "The agent resolves the approval with resolve_approval_task as approved, after confirming which task",
+        "The agent says plainly if the person is not the assigned approver rather than retrying another verb"
+      ]
+    },
+    {
+      "id": "8",
+      "question": "Create a task for Sam to chase the Leeds pipeline; we agreed it in the review.",
+      "expected_skill": "kpitree-context",
+      "expected_behavior": [
+        "The agent creates the task with create_task against the metric it concerns, assigned to Sam, since the person has asked for it",
+        "The agent confirms what was created by name"
+      ]
     }
   ]
 }

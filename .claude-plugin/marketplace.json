@@ -6,14 +6,14 @@
     "url": "https://kpitree.co"
   },
   "metadata": {
-    "description": "Official KPI Tree skills for Claude: investigate metrics, their drivers and the recorded reasons behind them, run business reviews, record what you learn, and build KPI trees. Includes 6 skills, 3 agents and 4 commands.",
+    "description": "Official KPI Tree skills for Claude: investigate metrics, their drivers and the recorded reasons behind them, run business reviews, record what you learn, and build KPI trees. Includes 7 skills, 3 agents and 4 commands.",
     "version": "1.0.0"
   },
   "plugins": [
     {
       "name": "kpitree",
       "source": "./",
-      "description": "Investigate your business metrics, their drivers and the recorded reasons behind them in KPI Tree, and write what you learn back. Includes 6 skills, 3 agents and 4 commands for metric investigation, segment questions, business reviews, recording context and building KPI trees.",
+      "description": "Investigate your business metrics, their drivers and the recorded reasons behind them in KPI Tree, and write what you learn back. Includes 7 skills, 3 agents and 4 commands for metric investigation, segment questions, business reviews, recording context and building KPI trees.",
       "version": "1.0.0",
       "author": {
         "name": "KPI Tree"

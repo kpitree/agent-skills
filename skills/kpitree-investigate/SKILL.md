@@ -43,15 +43,19 @@ output already holds the recorded context. Otherwise call `get_relevant_context`
 the metric and a short query naming what moved. A mechanism without the recorded launch,
 outage, absence or decision behind it is not yet an explanation. If nothing is
 recorded, say so and ask; what the person tells you becomes an `add_context` write-back
-in step 5 (see the `kpitree-context` skill).
+in step 5 (see the `kpitree-context` skill). When the move may already have been raised
+by a morning briefing, `recall` searches the recorded context and the briefing findings
+together, and `get_briefing_finding` says how long a finding has been going on and
+whether it was investigated.
 
 ## 4. Prior art
 
 Before recommending anything: `get_tasks_for_metric` (tasks feature), `list_workflows`
 and `list_workflow_runs` (workflows feature) to see whether an automation already fires
 on this metric and what happened when it did, and `list_initiatives` (okrs feature) for
-funded work already targeting it. Saying "nothing has been done" without having looked
-is a wrong answer.
+funded work already targeting it. Where briefings are on, today's briefing may already
+carry this finding with a proposed action nobody has accepted yet. Saying "nothing has
+been done" without having looked is a wrong answer.
 
 ## 5. Answer, then write back
 

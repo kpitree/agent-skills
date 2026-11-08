@@ -49,6 +49,23 @@
         "The agent lists the trees with list_trees and opens the relevant one with get_tree",
         "The agent describes the structure by metric name"
       ]
+    },
+    {
+      "id": "6",
+      "question": "Who owned Gross Margin back in March, before the reorg?",
+      "expected_skill": "kpitree-basics",
+      "expected_behavior": [
+        "The agent reads ownership at that moment with get_metric_raci_as_at rather than the current RACI",
+        "The answer names people, never UUIDs"
+      ]
+    },
+    {
+      "id": "7",
+      "question": "Who is in the Finance directory group in KPI Tree?",
+      "expected_skill": "kpitree-basics",
+      "expected_behavior": [
+        "The agent uses list_user_groups and get_user_group and does not confuse a directory group with a canvas group or a team"
+      ]
     }
   ]
 }

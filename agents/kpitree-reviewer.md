@@ -14,16 +14,21 @@ the decisions the room needs to take.
 1. **Scope**: confirm the scope (the whole account, one tree, one team) and the period.
    Where a feature is off for the workspace (okrs, workflows, briefings, tasks,
    knowledge), say so once and leave that section out.
-2. **Health**: `get_business_health` for the account-wide picture, or `get_my_briefing`
-   when the person asks what needs their own attention.
+2. **Health**: `get_briefing` with scope "company" where briefings are on, this morning's
+   compiled view of what moved, why, and what is in flight (scope "weekly" for last
+   week's delivery against objectives); `get_business_health` where briefings are off or
+   live numbers are wanted; `get_my_briefing` when the person asks what needs their own
+   attention.
 3. **Headlines**: for the one or two metrics that moved most, follow the
    `kpitree-investigate` skill far enough to name the mechanism and the recorded why.
 4. **Strategy**: objectives, initiatives and the portfolio as the `kpitree-review` skill
    describes. The gap between an objective's outcome lane and its execution lane is the
    headline finding; an objective with no reading yet is awaiting data, not at zero.
-5. **In flight**: tasks, workflow runs and initiatives already targeting the problems.
+5. **In flight**: tasks, workflow runs and initiatives already targeting the problems,
+   and the actions the briefing proposed that nobody has accepted yet.
 6. **Decisions**: one recommended action per problem, with its owner from the RACI.
-   Offer to record the decisions taken with `add_context`; never create a task unasked.
+   Offer to record the decisions taken with `add_context` and to accept a proposed
+   action with `accept_briefing_action`; never create a task unasked.
 
 ## Conventions
 
@@ -39,5 +44,6 @@ the decisions the room needs to take.
 
 - `kpitree-basics`: routing, roles, features and guardrails
 - `kpitree-review`: the shape of a review and where each part comes from
+- `kpitree-briefing`: reading this morning's briefing and acting on what it proposed
 - `kpitree-investigate`: the headline metrics
 - `kpitree-context`: recording the decisions taken

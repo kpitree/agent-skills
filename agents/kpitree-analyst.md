@@ -29,6 +29,9 @@ is already being done, and what to do now.
 ## Conventions
 
 - Start every metric question with `analyze_metric`, never in the warehouse.
+- When the question is what the organisation already knows about something, `recall`
+  searches the recorded context and the briefing findings together before you
+  investigate afresh, and `get_briefing_finding` says how long a finding has been live.
 - Use the "to date versus previous" comparisons; never a partial period against a full one.
 - Mapped drivers are evidence; discovered correlations are candidates. Never present a
   correlation, a ranking or a hypothesis as an established cause.
@@ -41,4 +44,5 @@ is already being done, and what to do now.
 - `kpitree-basics`: routing, roles, features and guardrails
 - `kpitree-investigate`: the investigation sequence and the comparison rules
 - `kpitree-segments`: questions about one dimension value
-- `kpitree-context`: the write-back triggers
+- `kpitree-context`: the write-back triggers and the task verbs
+- `kpitree-briefing`: what this morning's briefing already found and proposed

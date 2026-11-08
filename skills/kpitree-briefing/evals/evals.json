@@ -1,0 +1,60 @@
+{
+  "version": "1",
+  "skill_name": "kpitree-briefing",
+  "cases": [
+    {
+      "id": "1",
+      "question": "What should I look at today?",
+      "expected_skill": "kpitree-briefing",
+      "expected_behavior": [
+        "The agent reads this morning's company briefing with get_briefing rather than analysing metrics one by one",
+        "The agent presents the findings in the briefing's priority order with what moved, why, who owns it and the proposed action"
+      ],
+      "ground_truth": "A 'what should I look at' question is answered from the compiled briefing, in one call."
+    },
+    {
+      "id": "2",
+      "question": "What's on my plate this morning?",
+      "expected_skill": "kpitree-briefing",
+      "expected_behavior": [
+        "The agent uses get_my_briefing, the person's own action plan, and says where it came from if it was not a written plan",
+        "The agent does not re-analyse metrics the plan already covers"
+      ]
+    },
+    {
+      "id": "3",
+      "question": "Go ahead with the second action, the nudge to Sam.",
+      "expected_skill": "kpitree-briefing",
+      "expected_behavior": [
+        "The agent accepts that one action with accept_briefing_action, on the person's say-so",
+        "The agent confirms what the acceptance did and does not create a second task by hand"
+      ]
+    },
+    {
+      "id": "4",
+      "question": "Skip the check-in it suggested, we already did that in the standup.",
+      "expected_skill": "kpitree-briefing",
+      "expected_behavior": [
+        "The agent dismisses the action with dismiss_briefing_action and records the reason in the person's words"
+      ]
+    },
+    {
+      "id": "5",
+      "question": "How long has the refund rate problem been going on? Did anyone look at it before?",
+      "expected_skill": "kpitree-briefing",
+      "expected_behavior": [
+        "The agent uses get_briefing_finding to read the finding across every appearance",
+        "The agent answers how long, whether it was investigated, and whether it came back"
+      ]
+    },
+    {
+      "id": "6",
+      "question": "What changed since last week's briefing?",
+      "expected_skill": "kpitree-briefing",
+      "expected_behavior": [
+        "The agent lists the periods with list_briefings and reads the relevant one with get_briefing",
+        "The agent compares headlines and severity counts between the two periods"
+      ]
+    }
+  ]
+}

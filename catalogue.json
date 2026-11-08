@@ -11,6 +11,7 @@
       "summary": "Take one of the actions a briefing recommended, on the person's say-so.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "viewer",
       "feature": "briefings"
     },
@@ -20,6 +21,7 @@
       "summary": "Record a plain-English fact about the business so agents factor it in later.",
       "read_only": false,
       "destructive": false,
+      "open_world": false,
       "role": "editor",
       "feature": "knowledge"
     },
@@ -29,6 +31,7 @@
       "summary": "Add a metric to an existing tree, optionally as a child of another metric.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "editor",
       "feature": null
     },
@@ -37,7 +40,8 @@
       "title": "Analyze Metric Performance",
       "summary": "Fetch a metric's performance data for analysis.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -47,6 +51,7 @@
       "summary": "Copy a tree's structure onto a different dimension value.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "editor",
       "feature": null
     },
@@ -55,16 +60,18 @@
       "title": "Compare Dimension Metrics",
       "summary": "Compare dimension breakdowns of a parent metric side-by-side.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
     {
       "name": "create_context_item",
       "title": "Create Context Item",
-      "summary": "Add a human-typed context item (\u00a73.2): extract \u2192 embed \u2192 attach.",
+      "summary": "Add a fully specified context item; prefer add_context for a plain-English fact.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "editor",
       "feature": "knowledge"
     },
@@ -74,6 +81,7 @@
       "summary": "Create a new task (standalone or metric goal, individual or RACI-assigned).",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "viewer",
       "feature": "tasks"
     },
@@ -83,6 +91,7 @@
       "summary": "Create a KPI tree.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "editor",
       "feature": null
     },
@@ -92,6 +101,7 @@
       "summary": "Delete a task (ownership enforced).",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "viewer",
       "feature": "tasks"
     },
@@ -101,6 +111,7 @@
       "summary": "Delete a KPI tree permanently: its canvas, nodes, edges and groups.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "editor",
       "feature": null
     },
@@ -110,6 +121,7 @@
       "summary": "Write the caller's own personal action plan from today's company briefing.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "viewer",
       "feature": "briefings"
     },
@@ -119,6 +131,7 @@
       "summary": "Turn down one of the actions a briefing recommended.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "viewer",
       "feature": "briefings"
     },
@@ -127,7 +140,8 @@
       "title": "Explore Data Model",
       "summary": "Explore the upstream data model (tables, columns, lineage) for a metric.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -136,7 +150,8 @@
       "title": "Explore Semantic Entity",
       "summary": "Explore semantic layer entities, their dimensions, and linked metrics.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -145,7 +160,8 @@
       "title": "Get Artifact",
       "summary": "Admin escape hatch: read one stored artifact of any kind, whole.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "admin",
       "feature": "briefings"
     },
@@ -154,7 +170,8 @@
       "title": "Get Briefing",
       "summary": "Today's briefing: what moved, who owns it, and what is already being done.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "briefings"
     },
@@ -163,7 +180,8 @@
       "title": "Get Briefing Finding",
       "summary": "One finding across its whole life, not just today's briefing.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "briefings"
     },
@@ -172,7 +190,8 @@
       "title": "Get Business Health",
       "summary": "Get comprehensive business health across all metrics, organized by team.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -181,7 +200,8 @@
       "title": "Get Context Change",
       "summary": "Fetch a single change by UUID, with its full diff and outcome evidence.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "admin",
       "feature": "knowledge"
     },
@@ -190,16 +210,18 @@
       "title": "Get Context Item",
       "summary": "Fetch a single context item by UUID.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "knowledge"
     },
     {
       "name": "get_current_user",
       "title": "Get Current User Profile",
-      "summary": "Get the current user \u2014 who am I?",
+      "summary": "Get the current user (who am I).",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -208,16 +230,18 @@
       "title": "Get Initiative Details",
       "summary": "Get detailed initiative information: budget, milestones, metric targets, impact evidence, linked objectives, tasks and check-ins.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "okrs"
     },
     {
       "name": "get_metric",
       "title": "Get Metric Details",
-      "summary": "Fetch a single metric by ID with optimized relationship loading",
+      "summary": "One metric in full: definition, RACI, connection and tree memberships.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -226,7 +250,8 @@
       "title": "Get Metric Calculations",
       "summary": "Calculate metric values with period comparisons and outlier detection.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -235,34 +260,38 @@
       "title": "Get Metric Drivers",
       "summary": "Find what's driving a metric's change using pre-computed statistical correlations.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
     {
       "name": "get_metric_raci",
       "title": "Get Metric RACI",
-      "summary": "Who owns this metric now For a past moment use /metrics/{uuid}/raci/{as_at}, and for the full record use /metrics/{uuid}/raci/history.",
+      "summary": "Who owns this metric now.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
     {
       "name": "get_metric_raci_as_at",
       "title": "Get Metric RACI As At",
-      "summary": "Who owned this metric at a point in time Assignments are intervals, so this returns exactly the people who held each role at that moment.",
+      "summary": "Who owned this metric at a point in time.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
     {
       "name": "get_metric_raci_history",
       "title": "Get Metric RACI History",
-      "summary": "Every ownership assignment this metric has ever had Newest interval first.",
+      "summary": "Every ownership assignment this metric has ever had.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -271,7 +300,8 @@
       "title": "Get Metric Relationships",
       "summary": "Get parent/child metric relationships and tree memberships for a metric.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -280,7 +310,8 @@
       "title": "Get My Briefing",
       "summary": "Your action plan for today: what moved on your metrics, and what to do.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -289,7 +320,8 @@
       "title": "Get My Preferences",
       "summary": "The caller's own saved interface preferences, as a key to value map.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "briefings"
     },
@@ -298,7 +330,8 @@
       "title": "Get Objective Details",
       "summary": "Get detailed objective information including key results, initiatives, check-ins and child objectives.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "okrs"
     },
@@ -307,7 +340,8 @@
       "title": "Get Overview Timeline",
       "summary": "Who is working on what this week, as lanes and dated items.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "briefings"
     },
@@ -316,7 +350,8 @@
       "title": "Get Portfolio",
       "summary": "Where the money is working: every initiative ranked by evidence.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "okrs"
     },
@@ -325,7 +360,8 @@
       "title": "Get Relevant Context",
       "summary": "Retrieve from KPI Tree's Canopy business context layer the recorded notes, events, blockers and decisions that explain a metric or answer a question.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "knowledge"
     },
@@ -334,7 +370,8 @@
       "title": "Get Task Details",
       "summary": "Get a single task by UUID.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "tasks"
     },
@@ -343,16 +380,18 @@
       "title": "Get Tasks for Metric",
       "summary": "Get all tasks linked to a specific metric.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "tasks"
     },
     {
       "name": "get_tree",
       "title": "Get KPI Tree",
-      "summary": "Fetch a single tree by ID with optimized loading of metrics",
+      "summary": "One KPI tree in full: its nodes, edges, groups and the metrics on it.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -361,7 +400,8 @@
       "title": "Get User Profile",
       "summary": "Fetch a single active user by ID.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -370,16 +410,18 @@
       "title": "Get Directory Group Members",
       "summary": "Get one identity provider directory group and the people in it.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
     {
       "name": "get_workflow",
       "title": "Get Workflow Details",
-      "summary": "One workflow's trigger and steps \u2014 what it actually does when it fires.",
+      "summary": "One workflow's trigger and steps: what it actually does when it fires.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "workflows"
     },
@@ -389,6 +431,7 @@
       "summary": "Pull context from a connected source the user points you at.",
       "read_only": false,
       "destructive": false,
+      "open_world": true,
       "role": "admin",
       "feature": "knowledge"
     },
@@ -398,6 +441,7 @@
       "summary": "Place a linked tree node on a tree's canvas.",
       "read_only": false,
       "destructive": false,
+      "open_world": false,
       "role": "editor",
       "feature": "child_trees"
     },
@@ -406,7 +450,8 @@
       "title": "List Briefings",
       "summary": "The index of briefings the caller can read, newest period first.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "briefings"
     },
@@ -415,7 +460,8 @@
       "title": "List Context Changes",
       "summary": "List the changes the model has learned (change history / observability), newest first, filtered by type, status, the metric they are about and the window they were recorded in.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "admin",
       "feature": "knowledge"
     },
@@ -424,7 +470,8 @@
       "title": "List Context Items",
       "summary": "List context items, filtered by kind, status, visibility, attached metric, source connection, or a prefix of the source locator.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "knowledge"
     },
@@ -433,16 +480,18 @@
       "title": "List Initiatives",
       "summary": "List initiatives: the funded work behind objectives.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "okrs"
     },
     {
       "name": "list_metrics",
       "title": "List All Metrics",
-      "summary": "Fetch all metrics metadata with optimized loading including trees data",
+      "summary": "The metric catalogue: every metric with its RACI, connection and tree membership, without SQL or calculations.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -451,7 +500,8 @@
       "title": "List Objectives",
       "summary": "List OKR objectives with their status and progress.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "okrs"
     },
@@ -460,7 +510,8 @@
       "title": "List Scheduled Workflow Runs",
       "summary": "Upcoming scheduled workflow fires that include an AI-agent step, plus every platform workflow.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "workflows"
     },
@@ -469,7 +520,8 @@
       "title": "List Tasks",
       "summary": "List all tasks for the organisation.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "tasks"
     },
@@ -478,7 +530,8 @@
       "title": "List KPI Trees",
       "summary": "Fetch tree metadata without the node and edge graph.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -487,7 +540,8 @@
       "title": "List Directory Groups",
       "summary": "List the organisation's identity provider directory groups, with member counts.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -496,7 +550,8 @@
       "title": "List Users",
       "summary": "Fetch all active users.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -505,7 +560,8 @@
       "title": "List Workflow Runs",
       "summary": "Run history for one workflow, most recent first.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "workflows"
     },
@@ -514,16 +570,18 @@
       "title": "List Workflows",
       "summary": "List the account's automations: what exists, who owns it, and whether it is live.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "workflows"
     },
     {
       "name": "propose_context_hypothesis",
       "title": "Propose Context Hypothesis",
-      "summary": "Register a causal hunch \u2014 \"this metric drives that one\" \u2014 as a hypothesis for real outcomes to confirm, instead of asserting it.",
+      "summary": "Register a causal hunch, \"this metric drives that one\", as a hypothesis for real outcomes to confirm, instead of asserting it.",
       "read_only": false,
       "destructive": false,
+      "open_world": false,
       "role": "editor",
       "feature": "knowledge"
     },
@@ -532,7 +590,8 @@
       "title": "Query Warehouse",
       "summary": "Run a read-only SELECT against the organisation's own data warehouse, through the KPI Tree connection that powers the named metric.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "editor",
       "feature": null
     },
@@ -541,7 +600,8 @@
       "title": "Recall",
       "summary": "Search everything KPI Tree remembers about a subject in one call: the recorded business context in Canopy AND the findings from company briefings, ranked together.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -551,6 +611,7 @@
       "summary": "Remove a metric from a tree.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "editor",
       "feature": null
     },
@@ -560,6 +621,7 @@
       "summary": "Rename a group node on a tree's canvas.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "editor",
       "feature": null
     },
@@ -569,6 +631,7 @@
       "summary": "Rename a tree, and optionally reset its description.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "editor",
       "feature": null
     },
@@ -578,24 +641,27 @@
       "summary": "Resolve an approval task by setting its outcome to ``approved`` or ``rejected``.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "viewer",
       "feature": "tasks"
     },
     {
       "name": "retract_context_item",
       "title": "Retract Context Item",
-      "summary": "Soft-retract an item (``status = retracted``).",
+      "summary": "Retract a context item so it no longer informs analysis; the row is kept for the record.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "editor",
       "feature": "knowledge"
     },
     {
       "name": "revert_context_change",
       "title": "Revert Context Change",
-      "summary": "Undo an applied change (the one human touchpoint, a safety valve, not an approval gate): re-apply the captured ``current_value`` through the same handler that applied it, then mark the row ``reverted`` with the caller as ``reverted_by``.",
+      "summary": "Undo an applied change: a safety valve, not an approval gate.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "admin",
       "feature": "knowledge"
     },
@@ -604,7 +670,8 @@
       "title": "Search Metrics",
       "summary": "Find metrics by name, or by what they are cut by, who owns them, or which tree they sit on.",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": null
     },
@@ -614,6 +681,7 @@
       "summary": "Save one interface preference for the caller, replacing any earlier value.",
       "read_only": false,
       "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "briefings"
     },
@@ -623,6 +691,7 @@
       "summary": "Remove a linked tree node from a tree's canvas.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "editor",
       "feature": "child_trees"
     },
@@ -632,6 +701,7 @@
       "summary": "Update a metric",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "editor",
       "feature": null
     },
@@ -641,6 +711,7 @@
       "summary": "Update a task (ownership enforced).",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "viewer",
       "feature": "tasks"
     },
@@ -650,6 +721,7 @@
       "summary": "Add or remove parent-child relationships in a tree.",
       "read_only": false,
       "destructive": true,
+      "open_world": false,
       "role": "editor",
       "feature": null
     },
@@ -658,7 +730,8 @@
       "title": "Verify Driver Relationship",
       "summary": "Check whether the statistical model supports the claim that one metric drives another before you assert it (the grounding verb).",
       "read_only": true,
-      "destructive": null,
+      "destructive": false,
+      "open_world": false,
       "role": "viewer",
       "feature": "knowledge"
     }

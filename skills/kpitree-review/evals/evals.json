@@ -17,7 +17,7 @@
       "question": "How is the business doing overall?",
       "expected_skill": "kpitree-review",
       "expected_behavior": [
-        "The agent uses get_business_health for the account-wide picture organised by team"
+        "The agent starts from this morning's company briefing with get_briefing, or get_business_health where briefings are off, rather than analysing metrics one by one"
       ]
     },
     {
@@ -39,21 +39,21 @@
       ]
     },
     {
-      "id": "5",
-      "question": "What needs my attention today?",
-      "expected_skill": "kpitree-review",
-      "expected_behavior": [
-        "The agent uses get_my_briefing and presents the action plan in priority order",
-        "The agent opens a finding only when asked and does not re-analyse metrics the briefing covers"
-      ]
-    },
-    {
       "id": "6",
       "question": "Prepare the monthly review pack for the commercial team: what moved, why, and what we should decide.",
       "expected_skill": "kpitree-review",
       "expected_behavior": [
         "The agent scopes the review to the commercial team",
         "The agent ends with one recommended action per problem with its owner, and offers to record the decisions taken"
+      ]
+    },
+    {
+      "id": "5",
+      "question": "How did last week go against our objectives? What actually got delivered?",
+      "expected_skill": "kpitree-review",
+      "expected_behavior": [
+        "The agent reads the weekly action plan with get_briefing scope weekly, or the objectives' two lanes where briefings are off",
+        "The agent separates delivered work from movement in the outcome and names where the two disagree"
       ]
     }
   ]
