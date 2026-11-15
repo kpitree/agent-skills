@@ -59,6 +59,13 @@ EXPLAINED_NAMES = {
 }
 
 BACKTICKED = re.compile(r"`([a-z][a-z0-9_]*)`")
+# Words the Claude plugin directory's scanner reads as a credential being
+# forwarded. It held the plugin over a mocked tool description that said
+# "pass [] to see everything rolled up", so the connector's descriptions do
+# without them however innocent the sentence. The mocks are generated from the
+# connector, so the fix is made there and the files regenerated.
+CREDENTIAL_WORDS = re.compile(r"\b(pass|passwd|password|passphrase|secrets?|credentials?|tokens?|api[_ ]?keys?)\b", re.IGNORECASE)
+TOOL_LISTS = (CATALOGUE_PATH, EVALS_DIR / "mocks" / "kpitree" / "_tools.json")
 MD_LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 FIXTURE_RE = re.compile(r"\{\{file:fixtures/([^}]+)\{")
 EM_DASH = chr(0x2014)  # the em dash, spelt so this file never contains one
@@ -199,6 +206,22 @@ def check_server_url(catalogue: dict, report: Report) -> None:
             continue
         if found != expected:
             report.error(manifest, f"points at {found}, catalogue.json says {expected}")
+
+
+def check_credential_words(report: Report) -> None:
+    """No tool in the catalogue or the mocked tools list may be described with a word a scanner reads as a credential."""
+    for path in TOOL_LISTS:
+        if not path.is_file():
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue  # the catalogue's loader and the eval suite report a broken file
+        for entry in data.get("tools", []):
+            words = sorted({m.group(0).lower() for m in CREDENTIAL_WORDS.finditer(json.dumps(entry, ensure_ascii=False))})
+            if words:
+                report.error(rel(path), f"{entry.get('name', '?')} is described with {', '.join(words)}, which the "
+                                        "Claude plugin directory reads as a credential; reword it at the connector and regenerate")
 
 
 def check_tool_names(known: set[str], report: Report) -> None:
@@ -510,6 +533,7 @@ def main() -> int:
     tool_names = {entry.get("name", "") for entry in catalogue.get("tools", [])}
     comparison_ids = {entry.get("id", "") for entry in catalogue.get("comparisons", [])}
     check_server_url(catalogue, report)
+    check_credential_words(report)
 
     descriptions = check_skill_docs(skills, report)
     check_agents_and_commands(report)

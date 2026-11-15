@@ -9,4 +9,4 @@
   {"name": "Net revenue retention", "uuid": "6f7a8b9c-1d2e-4f3a-9b4c-5d6e7f8a9b1c", "dimension_value": null, "tree": null, "owner": "Mia Torres"},
   {"name": "Repeat purchase rate", "uuid": "7a8b9c1d-2e3f-4a4b-8c5d-6e7f8a9b1c2d", "dimension_value": null, "tree": null, "owner": "Mia Torres"},
   {"name": "Refund rate", "uuid": "8b9c1d2e-3f4a-4b5c-9d6e-7f8a9b1c2d3e", "dimension_value": null, "tree": "Company", "owner": "Dana Okafor"}
-], "note": "Filters combine with AND. Names are returned for every match; pass dimension_value for a segment."}
+], "note": "Filters combine with AND. Names are returned for every match; set dimension_value for a segment."}

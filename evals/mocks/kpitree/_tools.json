@@ -1059,7 +1059,7 @@
               }
             ],
             "title": "Limit",
-            "description": "Return only the most recent N rows up to the latest reported one: rows dated after today are left out while earlier ones exist, and so is today's row while it is still empty. Omit for the full series. A calculation row carries ~295 fields, so the full series exceeds what an MCP client accepts on any metric with real history; over MCP a call without limit returns the latest 1 row(s). Pass period_comparisons to narrow each row before asking for a series."
+            "description": "Return only the most recent N rows up to the latest reported one: rows dated after today are left out while earlier ones exist, and so is today's row while it is still empty. Omit for the full series. A calculation row carries ~295 fields, so the full series exceeds what an MCP client accepts on any metric with real history; over MCP a call without limit returns the latest 1 row(s). Set period_comparisons to narrow each row before asking for a series."
           }
         },
         "required": [
@@ -1379,7 +1379,7 @@
               }
             ],
             "default": null,
-            "description": "Lane subjects to open one level on the department and\ncompany rungs: a department name shows its teams, a team's\nsubject shows its people. Omit to open the caller's own team\nand department; pass [] to see everything rolled up."
+            "description": "Lane subjects to open one level on the department and\ncompany rungs: a department name shows its teams, a team's\nsubject shows its people. Omit to open the caller's own team\nand department; an empty list shows everything rolled up."
           }
         },
         "type": "object"
@@ -1696,7 +1696,7 @@
     },
     {
       "name": "list_briefings",
-      "description": "The index of briefings the caller can read, newest period first.\n\nUse this to answer \"what changed since last week\" or to find the period\nto pass to get_briefing. Rows carry the title, summary and severity\ncounts only; the body of any one of them is a get_briefing call away.\nPersonal briefings other than the caller's own are never listed.",
+      "description": "The index of briefings the caller can read, newest period first.\n\nUse this to answer \"what changed since last week\" or to find the period\nfor get_briefing. Rows carry the title, summary and severity\ncounts only; the body of any one of them is a get_briefing call away.\nPersonal briefings other than the caller's own are never listed.",
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
@@ -2782,7 +2782,7 @@
     },
     {
       "name": "search_metrics",
-      "description": "Find metrics by name, or by what they are cut by, who owns them, or which tree they sit on.\n\nText search alone only finds a segment when the segment name happens to be\nin the metric name. Pass dimension_value to find every metric cut to a\nsegment (a site, product line or tier) regardless of naming, which is the\nreliable way to assemble \"everything we measure for X\". Filters combine\n(AND), and every argument is optional: pass only dimension_value to list\na whole segment.",
+      "description": "Find metrics by name, or by what they are cut by, who owns them, or which tree they sit on.\n\nText search alone only finds a segment when the segment name happens to be\nin the metric name. Set dimension_value to find every metric cut to a\nsegment (a site, product line or tier) regardless of naming, which is the\nreliable way to assemble \"everything we measure for X\". Filters combine\n(AND), and every argument is optional: dimension_value alone lists\na whole segment.",
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
