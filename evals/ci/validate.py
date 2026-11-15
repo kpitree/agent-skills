@@ -273,7 +273,7 @@ def check_agents_and_commands(report: Report) -> None:
 
 
 def check_routing_cases(skills: list[str], report: Report) -> int:
-    """`skills/<skill>/evals/evals.json`: the prompts tier 1 routes."""
+    """`skills/<skill>/evals/evals.json`: the prompts the routing eval routes."""
     known = set(skills)
     total_cases = 0
 
@@ -349,11 +349,11 @@ def check_routing_cases(skills: list[str], report: Report) -> int:
 def check_negative_cases(skills: list[str], report: Report) -> int:
     """Out-of-scope prompts that must route to `none`.
 
-    These have no owning skill and no expected behaviour. They exist so tier 1
+    These have no owning skill and no expected behaviour. They exist so the routing eval
     can see a description that gets greedier, not just one that gets weaker.
     """
     if not NEGATIVE_CASES_PATH.is_file():
-        report.warn("evals/ci/negative-cases.json", "missing; tier 1 cannot detect over-triggering")
+        report.warn("evals/ci/negative-cases.json", "missing; the routing eval cannot detect over-triggering")
         return 0
 
     try:

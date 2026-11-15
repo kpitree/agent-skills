@@ -1,15 +1,11 @@
-"""Regression tests for validation and paired routing, without API calls."""
+"""Regression tests for the validation, without API calls."""
 
-import contextlib
-import io
 import json
 import tempfile
 import unittest
 from pathlib import Path
-from types import SimpleNamespace
 from unittest.mock import patch
 
-import routing_eval as routing
 import validate
 
 
@@ -78,79 +74,6 @@ class ToolNameTests(unittest.TestCase):
                 validate.check_tool_names({"analyze_metric"}, report)
             self.assertEqual(len(report.errors), 1)
             self.assertIn("made_up_tool", report.errors[0])
-
-
-class PairedRoutingTests(unittest.TestCase):
-    def setUp(self):
-        self.base = routing.Catalog("base", ["a", "b"], [{"text": "old"}], ["a", "b", "none"])
-        self.head = routing.Catalog("head", ["a", "b"], [{"text": "new"}], ["a", "b", "none"])
-        self.cases = [routing.Case("a", "1", "request", "a")]
-        self.usage = SimpleNamespace(input_tokens=1, output_tokens=1, cache_read_input_tokens=2)
-        self.args = SimpleNamespace(model="stub", samples=3)
-
-    def run_votes(self, votes):
-        with patch.object(routing, "classify", side_effect=[(v, self.usage) for v in votes]) as mock, \
-                contextlib.redirect_stdout(io.StringIO()):
-            results, confirmation = routing.run_paired(
-                None, "stub", self.base, self.head, self.cases, 3, 1)
-            code, summary = routing.report_paired(results, self.args, "base", "head", confirmation)
-        return results, confirmation, code, summary, mock.call_count
-
-    def test_identical_catalogs_share_votes_and_do_not_double_count_tokens(self):
-        self.head.system = self.base.system
-        results, confirmation, code, summary, calls = self.run_votes(["a", "b", "a"])
-        self.assertEqual(calls, 3)
-        self.assertEqual(code, 0)
-        self.assertEqual(confirmation, [])
-        self.assertEqual(results[0]["picks"], results[1]["picks"])
-        self.assertEqual(results[1]["reused_from"], "base")
-        self.assertEqual(sum(r["input_tokens"] for r in results), 3)
-        self.assertEqual(sum(r["cached_input_tokens"] for r in results), 6)
-        self.assertIn("Catalogues are identical", "\n".join(summary))
-
-    def test_changed_choices_do_not_reuse_votes(self):
-        self.head.system = self.base.system
-        self.head.choices = ["a", "none"]
-        _, confirmation, code, _, calls = self.run_votes(["a"] * 6)
-        self.assertEqual(calls, 6)
-        self.assertEqual(confirmation, [])
-        self.assertEqual(code, 0)
-
-    def test_transient_head_failure_does_not_gate(self):
-        initial = ["a", "a", "b", "b", "b", "a"]
-        results, confirmation, code, summary, calls = self.run_votes(initial + ["a"] * 18)
-        self.assertEqual(code, 0)
-        self.assertEqual(calls, 24)
-        self.assertFalse(results[1]["passed"])
-        self.assertTrue(confirmation[1]["passed"])
-        self.assertIn("Unconfirmed regressions", "\n".join(summary))
-        self.assertEqual(sum(r["input_tokens"] for r in results + confirmation), calls)
-
-    def test_unstable_base_does_not_gate(self):
-        _, _, code, _, _ = self.run_votes(["a"] * 3 + ["b"] * 21)
-        self.assertEqual(code, 0)
-
-    def test_repeatable_regression_gates(self):
-        _, confirmation, code, summary, calls = self.run_votes(
-            ["a"] * 3 + ["b"] * 3 + ["a"] * 9 + ["b"] * 9)
-        self.assertEqual(code, 1)
-        self.assertEqual(calls, 24)
-        self.assertEqual([len(r["picks"]) for r in confirmation], [9, 9])
-        self.assertIn("Confirmed regressions", "\n".join(summary))
-
-    def test_observed_fix_needs_no_confirmation(self):
-        _, confirmation, code, _, calls = self.run_votes(["b"] * 3 + ["a"] * 3)
-        self.assertEqual(code, 0)
-        self.assertEqual(confirmation, [])
-        self.assertEqual(calls, 6)
-
-    def test_confirmation_api_error_is_not_a_pass(self):
-        responses = [(v, self.usage) for v in ["a"] * 3 + ["b"] * 3]
-        with patch.object(routing, "classify", side_effect=responses + [RuntimeError("API failed")]), \
-                contextlib.redirect_stdout(io.StringIO()):
-            with self.assertRaisesRegex(RuntimeError, "API failed"):
-                routing.run_paired(None, "stub", self.base, self.head, self.cases, 3, 1)
-
 
 if __name__ == "__main__":
     unittest.main()

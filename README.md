@@ -1,5 +1,5 @@
 <p align="left">
-  <img src="assets/logo.svg" alt="KPI Tree" width="240">
+  <img src="assets/logo.png" alt="KPI Tree" width="240">
 </p>
 
 # KPI Tree Agent Skills
@@ -228,7 +228,7 @@ agent-skills/
 │   ├── kpitree-briefing/
 │   └── kpitree-tree-builder/
 │       ├── SKILL.md
-│       └── evals/evals.json   # routing cases for tier 1
+│       └── evals/evals.json   # routing cases
 ├── agents/
 │   ├── kpitree-analyst.md
 │   ├── kpitree-reviewer.md
@@ -240,7 +240,7 @@ agent-skills/
 │   └── weekly-review.md
 ├── evals/
 │   ├── README.md              # the claude plugin eval suite
-│   ├── ci/                    # tier 0 validation and tier 1 routing
+│   ├── ci/                    # tier 0 validation
 │   ├── mocks/kpitree/         # mocked connector responses for the plugin eval suite
 │   └── <case>/                # prompt.md and graders/ per case
 ├── assets/
@@ -261,7 +261,6 @@ The root `evals/` directory is contributor tooling, not a distributed skill pack
 | Path | Purpose |
 |------|---------|
 | `evals/ci/validate.py` | Tier 0: structure, tool names against `catalogue.json`, eval files. Stdlib only, runs on every pull request |
-| `evals/ci/routing_eval.py` | Tier 1: does each prompt route to the skill that owns it? One classification call per sample, paired against the base branch on pull requests |
 | `evals/<case>/` | The `claude plugin eval` suite: full agent runs with the connector mocked, scored by graders. On demand, see `evals/README.md` |
 
 Per-skill routing cases live with the skill they evaluate:

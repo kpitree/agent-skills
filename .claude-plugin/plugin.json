@@ -9,6 +9,7 @@
     "url": "https://kpitree.co"
   },
   "homepage": "https://kpitree.co",
+  "icon": "./assets/icon.png",
   "repository": "https://github.com/kpitree/agent-skills",
   "license": "MIT",
   "keywords": ["kpi", "metrics", "analytics", "decision-intelligence", "business-performance", "okr", "dbt", "semantic-layer", "mcp"],

@@ -1,5 +1,5 @@
 ---
-description: Investigate a KPI Tree metric: what moved, which driver, the recorded why, what is in flight, and what to do
+description: "Investigate a KPI Tree metric: what moved, which driver, the recorded why, what is in flight, and what to do"
 argument-hint: <metric name> [what prompted the question]
 ---
 

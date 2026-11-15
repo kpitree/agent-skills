@@ -1,5 +1,5 @@
 {
-  "_comment": "Out-of-scope prompts for evals/ci/routing_eval.py. Every one of these should route to `none`. The routing cases in skills/*/evals/ only contain prompts that DO belong to a skill, so on their own they can only detect a skill that stops attracting its own work; they are blind to a description that gets greedier and starts claiming prompts it should not. The `hard` cases deliberately share vocabulary with the skills (metric, KPI, revenue, dashboard, tree, context) while targeting another tool or a general question; those are where over-triggering shows up first.",
+  "_comment": "Out-of-scope prompts for the routing eval. Every one of these should route to `none`. The routing cases in skills/*/evals/ only contain prompts that DO belong to a skill, so on their own they can only detect a skill that stops attracting its own work; they are blind to a description that gets greedier and starts claiming prompts it should not. The `hard` cases deliberately share vocabulary with the skills (metric, KPI, revenue, dashboard, tree, context) while targeting another tool or a general question; those are where over-triggering shows up first.",
   "version": "1",
   "cases": [
     {

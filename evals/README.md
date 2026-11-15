@@ -18,4 +18,4 @@ The mocks describe one fictional workspace (a revenue decline led by the Leeds b
 
 ## CI tiers
 
-`evals/ci/` holds the two cheap tiers that run on every pull request: structural validation (tier 0) and skill routing (tier 1). See [`evals/ci/README.md`](ci/README.md).
+`evals/ci/` holds tier 0, the structural validation that runs on every pull request. See [`evals/ci/README.md`](ci/README.md).
