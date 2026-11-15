@@ -435,7 +435,7 @@ def check_negative_cases(skills: list[str], report: Report) -> int:
 
 
 def check_plugin_eval_cases(tool_names: set[str], report: Report) -> int:
-    """The `claude plugin eval` suite: evals/<case>/prompt.md with graders/."""
+    """The plugin eval suite: evals/<case>/prompt.md with graders/."""
     cases = 0
     for prompt in sorted(EVALS_DIR.glob("*/prompt.md")):
         cases += 1

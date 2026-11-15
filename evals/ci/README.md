@@ -17,5 +17,5 @@ The routing cases in `skills/<skill>/evals/evals.json` and the out-of-scope prom
 runs outside this repository: it needs an Anthropic key, and the plugin directory holds a
 plugin for review whenever anything in its repository reads a credential.
 
-The full `claude plugin eval` suite, with the connector mocked, lives one level up and is
+The full plugin eval suite, with the connector mocked, lives one level up and is
 described in `evals/README.md`.

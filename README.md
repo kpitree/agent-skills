@@ -237,7 +237,7 @@ agent-skills/
 │   ├── record.md
 │   └── weekly-review.md
 ├── evals/
-│   ├── README.md              # the claude plugin eval suite
+│   ├── README.md              # the plugin eval suite
 │   ├── ci/                    # tier 0 validation
 │   ├── mocks/kpitree/         # mocked connector responses for the plugin eval suite
 │   └── <case>/                # prompt.md and graders/ per case
@@ -259,7 +259,7 @@ The root `evals/` directory is contributor tooling, not a distributed skill pack
 | Path | Purpose |
 |------|---------|
 | `evals/ci/validate.py` | Tier 0: structure, tool names against `catalogue.json`, eval files. Stdlib only, runs on every pull request |
-| `evals/<case>/` | The `claude plugin eval` suite: full agent runs with the connector mocked, scored by graders. On demand, see `evals/README.md` |
+| `evals/<case>/` | The plugin eval suite: full agent runs with the connector mocked, scored by graders. On demand, see `evals/README.md` |
 
 Per-skill routing cases live with the skill they evaluate:
 

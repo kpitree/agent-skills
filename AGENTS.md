@@ -13,7 +13,7 @@ This file holds agent-specific operating instructions for this repository. Follo
 
 - Skills go under `skills/<name>/SKILL.md`; the directory name and the frontmatter `name` match and start with `kpitree-`.
 - Agent definitions live in `agents/`, slash commands in `commands/`.
-- Routing cases for a skill live in `skills/<skill>/evals/evals.json`; the root `evals/` directory holds the CI scripts and the `claude plugin eval` suite.
+- Routing cases for a skill live in `skills/<skill>/evals/evals.json`; the root `evals/` directory holds the CI scripts and the plugin eval suite.
 
 Skills, agents and commands are auto-discovered. Do not add manifest registration for them. Do not add coding-editor integrations (Cursor, Copilot, Gemini CLI and the like): this repo targets Claude and ChatGPT, see CONTRIBUTING.md.
 

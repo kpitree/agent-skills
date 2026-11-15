@@ -9,7 +9,7 @@ agent-skills/
 ├── skills/            # one directory per skill, SKILL.md at its root
 ├── agents/            # agent definitions (*.md with frontmatter)
 ├── commands/          # slash commands (*.md with frontmatter)
-├── evals/             # tier 0 CI and the claude plugin eval suite
+├── evals/             # tier 0 CI and the plugin eval suite
 ├── catalogue.json     # the connector's tools and comparisons, published from the connector
 ├── .claude-plugin/    # Claude plugin metadata (Claude, Cowork, Claude Code)
 ├── .agents/plugins/   # Codex marketplace
@@ -89,7 +89,7 @@ Run `git diff --check` before requesting review.
 
 Tier 0 runs on every pull request (`evals/ci/README.md`). If you change a skill's `description`, or add a skill, add or update routing cases in `skills/<skill>/evals/evals.json`, and consider an out-of-scope case in `evals/ci/negative-cases.json` when the new wording could claim a prompt that belongs elsewhere. The routing eval that scores those cases against a model runs outside this repository, as it needs an Anthropic key and the plugin directory holds plugins whose code reads one.
 
-The full `claude plugin eval` suite (`evals/README.md`) runs an agent against mocked connector responses and scores the transcript. Run it when you change what a skill tells the agent to do, not only what it says the skill is for.
+The full plugin eval suite (`evals/README.md`) runs an agent against mocked connector responses and scores the transcript. Run it when you change what a skill tells the agent to do, not only what it says the skill is for.
 
 ## Staying in Sync with the Connector
 

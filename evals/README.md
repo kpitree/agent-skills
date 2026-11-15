@@ -2,9 +2,9 @@
 
 Two things live here.
 
-## The `claude plugin eval` suite
+## The plugin eval suite
 
-`evals/<case>/prompt.md` with `graders/*.md`, in the format `claude plugin eval` documents. The connector's tools are mocked under `mocks/kpitree/`, so a run never reaches a real workspace; it runs a full agent transcript per case and scores it with the graders. Every run spends tokens, so pilot it deliberately:
+`evals/<case>/prompt.md` with `graders/*.md`, in the format Claude Code's plugin eval command documents. The connector's tools are mocked under `mocks/kpitree/`, so a run never reaches a real workspace; it runs a full agent transcript per case and scores it with the graders. Every run spends tokens, so pilot it deliberately:
 
 ```bash
 claude plugin eval . --runs 1 --ablation with-without --no-scaffold --no-publish
