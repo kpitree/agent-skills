@@ -1,7 +1,7 @@
 {
   "name": "kpitree",
   "displayName": "KPI Tree",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Investigate your business metrics, their drivers and the recorded reasons behind them in KPI Tree, and write what you learn back. Includes 7 skills, 3 agents and 4 commands for metric investigation, segment questions, business reviews, recording context and building KPI trees.",
   "author": {
     "name": "KPI Tree",

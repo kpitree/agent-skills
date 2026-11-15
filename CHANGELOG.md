@@ -2,6 +2,16 @@
 
 All notable changes to this repository are documented in this file. Every manifest carries the same version, so one number identifies one commit of this repo.
 
+## [1.0.1] - 2026-11-15
+
+_Summary: a fix to one command and the listing's icon; the skills are unchanged._
+
+**Fixed**
+- The `/kpitree:investigate` command's description is quoted, so its frontmatter parses: the unquoted colon in it could leave the command without a description.
+
+**Changed**
+- The Claude manifest declares the plugin's icon for the directory listing.
+
 ## [1.0.0] - 2026-11-08
 
 _Summary: first release. One repository for Claude and ChatGPT._
