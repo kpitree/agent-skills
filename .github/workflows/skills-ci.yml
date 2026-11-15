@@ -1,6 +1,6 @@
 name: Skills CI
 
-# Three cheap checks that run on every pull request. The full `claude plugin eval`
+# Three cheap checks that run on every pull request. The full plugin eval
 # suite (evals/README.md) is deliberately not here: every run spends tokens on an
 # agent transcript, so it stays on demand.
 on:
