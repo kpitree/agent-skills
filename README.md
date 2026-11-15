@@ -97,7 +97,7 @@ codex mcp login kpitree
 
 ### One address for every workspace
 
-`https://mcp.kpitree.co/mcp` is a gateway: it validates your sign-in, works out which workspace your organisation belongs to, and forwards the call to it. You never need a workspace-specific address.
+`https://mcp.kpitree.co/mcp` is a gateway: it validates your sign-in, works out which workspace your organisation belongs to, and forwards the call to it. You never need a workspace-specific address, and a trial workspace is reached the same way as any other.
 
 ## What You Get
 
