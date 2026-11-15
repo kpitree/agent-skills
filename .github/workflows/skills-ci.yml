@@ -1,8 +1,12 @@
 name: Skills CI
 
-# Three cheap checks that run on every pull request. The full plugin eval
-# suite (evals/README.md) is deliberately not here: every run spends tokens on an
-# agent transcript, so it stays on demand.
+# One cheap check that runs on every pull request: the plugin validated as the
+# directory validates it. The structural checks (tool names against the
+# catalogue, routing cases, links, house style) run in KPI Tree's own test suite
+# against this repository, since the directory accepts no scripts from a
+# publisher it has not verified. The full plugin eval suite (evals/README.md) is
+# deliberately not here: every run spends tokens on an agent transcript, so it
+# stays on demand.
 on:
   pull_request:
     paths:
@@ -27,19 +31,6 @@ permissions:
   contents: read
 
 jobs:
-  validate:
-    name: Tier 0, structural validation
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-
-      - name: Validate skills, agents, commands and eval files
-        run: python3 evals/ci/validate.py
-
-      - name: Test the eval harness
-        run: python3 -m unittest discover -s evals/ci -p 'test_*.py'
-
   plugin:
     name: Claude plugin validation
     runs-on: ubuntu-latest
@@ -54,4 +45,3 @@ jobs:
       # pull request that would be refused there fails here first.
       - name: Validate the plugin as the directory would
         run: claude plugin validate . --profile directory
-

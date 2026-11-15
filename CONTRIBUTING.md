@@ -9,7 +9,7 @@ agent-skills/
 ├── skills/            # one directory per skill, SKILL.md at its root
 ├── agents/            # agent definitions (*.md with frontmatter)
 ├── commands/          # slash commands (*.md with frontmatter)
-├── evals/             # tier 0 CI and the plugin eval suite
+├── evals/             # routing cases and the plugin eval suite
 ├── catalogue.json     # the connector's tools and comparisons, published from the connector
 ├── .claude-plugin/    # Claude plugin metadata (Claude, Cowork, Claude Code)
 ├── .agents/plugins/   # Codex marketplace
@@ -40,7 +40,7 @@ description: One paragraph saying what this skill does and when to use it, with 
 
 The `description` is the primary routing signal, and it is all an agent sees before loading the skill. Write it to match how people naturally ask for the work, and say what the skill is not for when a neighbour could claim the same prompt. The Agent Skills specification caps it at 1024 characters; Claude Code truncates past that.
 
-Skill bodies name tools in backticks, `analyze_metric`, and so do agents and commands. Every such name must exist in `catalogue.json` (or be a period comparison id, or one of the argument and signal names `evals/ci/validate.py` lists as explained). The catalogue is published from the connector itself; if a tool you need is not in it, the connector does not offer it.
+Skill bodies name tools in backticks, `analyze_metric`, and so do agents and commands. Every such name must exist in `catalogue.json` (or be a period comparison id, or one of the argument and signal names the structural checks list as explained). The catalogue is published from the connector itself; if a tool you need is not in it, the connector does not offer it.
 
 Put the guardrails an agent must know before it calls anything near the top. Keep `SKILL.md` under 500 lines; move detail into `references/` beside it, linked one level deep.
 
@@ -69,17 +69,17 @@ Commands in `commands/` are Markdown with a `description` (and optionally an `ar
 
 ## House Style
 
-British English (organisation, behaviour, colour). No em dashes: use a comma, a full stop or a colon. Name things by what they are to the person, never by UUID. Tier 0 fails on an em dash in distributed prose.
+British English (organisation, behaviour, colour). No em dashes: use a comma, a full stop or a colon. Name things by what they are to the person, never by UUID. The structural checks fail on an em dash in distributed prose.
 
 ## Validation
 
 Before opening a pull request:
 
 ```bash
-python3 evals/ci/validate.py                                   # tier 0
-python3 -m unittest discover -s evals/ci -p 'test_*.py'
 claude plugin validate . --profile directory                   # what the Claude directory checks
 ```
+
+The structural checks (names and descriptions, links, tool names against `catalogue.json`, routing cases, the plugin eval suite's files, house style) run in the KPI Tree team's own test suite against a checkout of this repository, on every pull request before it is merged. The Claude plugin directory accepts scripts only from publishers it has verified, so this repository ships none.
 
 For a change to skill or agent behaviour, also exercise it against a real workspace through the connector: run the prompts the skill is for and read back anything it wrote. Do not mark a pull request ready when the behaviour has only been checked against mocked responses.
 
@@ -87,13 +87,13 @@ Run `git diff --check` before requesting review.
 
 ## Evals
 
-Tier 0 runs on every pull request (`evals/ci/README.md`). If you change a skill's `description`, or add a skill, add or update routing cases in `skills/<skill>/evals/evals.json`, and consider an out-of-scope case in `evals/ci/negative-cases.json` when the new wording could claim a prompt that belongs elsewhere. The routing eval that scores those cases against a model runs outside this repository, as it needs an Anthropic key and the plugin directory holds plugins whose code reads one.
+The structural checks run on every pull request before it is merged (`evals/ci/README.md`). If you change a skill's `description`, or add a skill, add or update routing cases in `skills/<skill>/evals/evals.json`, and consider an out-of-scope case in `evals/ci/negative-cases.json` when the new wording could claim a prompt that belongs elsewhere. The routing eval that scores those cases against a model runs outside this repository, as it needs an Anthropic key and the plugin directory holds plugins whose code reads one.
 
 The full plugin eval suite (`evals/README.md`) runs an agent against mocked connector responses and scores the transcript. Run it when you change what a skill tells the agent to do, not only what it says the skill is for.
 
 ## Staying in Sync with the Connector
 
-The skills document the KPI Tree connector, which gains tools and occasionally renames or removes one. `catalogue.json` is published here by the KPI Tree team from the connector itself whenever it changes, so a connector change arrives as a catalogue change. Tier 0 then fails on any skill that names a tool no longer listed, which is the signal to update the prose. Fix references to a removed tool rather than annotating them: naming a tool that does not exist, even to warn against it, leaves the agent a plausible option that will fail.
+The skills document the KPI Tree connector, which gains tools and occasionally renames or removes one. `catalogue.json` is published here by the KPI Tree team from the connector itself whenever it changes, so a connector change arrives as a catalogue change. The structural checks then fail on any skill that names a tool no longer listed, which is the signal to update the prose. Fix references to a removed tool rather than annotating them: naming a tool that does not exist, even to warn against it, leaves the agent a plausible option that will fail.
 
 ## Versioning and Changelog
 
@@ -150,7 +150,7 @@ Document user-visible changes in `CHANGELOG.md` under the version, with `Added`,
 - [ ] Routing cases were added or updated if a description changed
 - [ ] The version was bumped in every manifest if distributed behaviour changed
 - [ ] `CHANGELOG.md` was updated if distributed behaviour changed
-- [ ] `python3 evals/ci/validate.py` and `git diff --check` pass
+- [ ] `claude plugin validate . --profile directory` and `git diff --check` pass
 
 ## What to Avoid
 

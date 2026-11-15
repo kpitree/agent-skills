@@ -25,7 +25,7 @@ Skills, agents and commands are auto-discovered. Do not add manifest registratio
 
 ## Validation and Release
 
-- Run `python3 evals/ci/validate.py` and `python3 -m unittest discover -s evals/ci -p 'test_*.py'` before marking work ready.
+- Run `claude plugin validate . --profile directory` before marking work ready. The structural checks (names and descriptions, links, tool names against `catalogue.json`, routing cases, house style) run in the KPI Tree team's own test suite against this repository, on every pull request before it is merged: the directory accepts no scripts from a publisher it has not verified, so they are not in this repository.
 - Exercise behaviour-changing skill or agent updates against a real KPI Tree workspace through the connector before marking the work ready.
 - Add or update routing cases when a description changes.
 - If distributed behaviour changes, bump the version in every manifest (`.claude-plugin/plugin.json`, both places in `.claude-plugin/marketplace.json`, and `plugin.json`) to the same number, and add a `CHANGELOG.md` entry in the same pull request. CI does not create a follow-up pull request.

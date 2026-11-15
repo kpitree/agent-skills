@@ -200,7 +200,7 @@ Plugins added from a directory update with the directory listing. A Codex instal
 
 ### How these skills track the connector
 
-The skills document a moving target: the KPI Tree connector gains tools, and occasionally renames or removes one. `catalogue.json` is the connector's tool list as it publishes it, released here by the KPI Tree team whenever the connector changes. CI (`evals/ci/validate.py`) checks every tool a skill names against it, so a skill cannot point at a tool the connector no longer offers.
+The skills document a moving target: the KPI Tree connector gains tools, and occasionally renames or removes one. `catalogue.json` is the connector's tool list as it publishes it, released here by the KPI Tree team whenever the connector changes. The KPI Tree team's own checks compare every tool a skill names against it before a change is merged, so a skill cannot point at a tool the connector no longer offers.
 
 Releases are recorded in `CHANGELOG.md`. If a tool refuses or is missing for you, your workspace may not have that feature switched on, or your role may not include it; the `kpitree-basics` skill tells the assistant how to say so.
 
@@ -238,7 +238,7 @@ agent-skills/
 │   └── weekly-review.md
 ├── evals/
 │   ├── README.md              # the plugin eval suite
-│   ├── ci/                    # tier 0 validation
+│   ├── ci/                    # out-of-scope routing cases
 │   ├── mocks/kpitree/         # mocked connector responses for the plugin eval suite
 │   └── <case>/                # prompt.md and graders/ per case
 ├── assets/
@@ -258,7 +258,7 @@ The root `evals/` directory is contributor tooling, not a distributed skill pack
 
 | Path | Purpose |
 |------|---------|
-| `evals/ci/validate.py` | Tier 0: structure, tool names against `catalogue.json`, eval files. Stdlib only, runs on every pull request |
+| `evals/ci/negative-cases.json` | Prompts that belong to no skill, checked beside the routing cases |
 | `evals/<case>/` | The plugin eval suite: full agent runs with the connector mocked, scored by graders. On demand, see `evals/README.md` |
 
 Per-skill routing cases live with the skill they evaluate:
@@ -270,7 +270,7 @@ skills/<skill>/evals/evals.json
 ## Documentation
 
 - [KPI Tree documentation](https://docs.kpitree.co)
-- [CI evals](evals/ci/README.md) and the [plugin eval suite](evals/README.md)
+- [Routing cases](evals/ci/README.md) and the [plugin eval suite](evals/README.md)
 - [Claude Code plugin docs](https://code.claude.com/docs/en/plugins)
 - [Agent Skills specification](https://agentskills.io)
 - [Agent Plugins specification](https://agent-plugins.org)

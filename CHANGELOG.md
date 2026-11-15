@@ -2,6 +2,14 @@
 
 All notable changes to this repository are documented in this file. Every manifest carries the same version, so one number identifies one commit of this repo.
 
+## [1.0.2] - 2026-11-15
+
+_Summary: nothing about the skills changed; the repository ships no scripts._
+
+**Changed**
+- The structural checks moved out of the repository into the KPI Tree team's own test suite: the Claude plugin directory accepts scripts only from publishers it has verified. The out-of-scope routing cases stay in `evals/ci/`.
+- One copy of the icon, in `assets/`.
+
 ## [1.0.1] - 2026-11-15
 
 _Summary: a fix to one command and the listing's icon; the skills are unchanged._

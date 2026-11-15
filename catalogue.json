@@ -1,5 +1,5 @@
 {
-  "//": "The KPI Tree connector's tools and period comparisons, published by the KPI Tree team from the connector itself. Do not edit by hand: evals/ci/validate.py checks every tool the skills name against this file, and a connector change arrives as a new version of it.",
+  "//": "The KPI Tree connector's tools and period comparisons, published by the KPI Tree team from the connector itself. Do not edit by hand: the KPI Tree team's own checks compare every tool the skills name against this file, and a connector change arrives as a new version of it.",
   "server": {
     "name": "kpitree",
     "url": "https://mcp.kpitree.co/mcp"
