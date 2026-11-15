@@ -17,7 +17,7 @@ on:
       - ".github/workflows/skills-ci.yml"
       - ".github/scripts/**"
   push:
-    branches: [main]
+    branches: [master, main]
   workflow_dispatch:
 
 concurrency:
