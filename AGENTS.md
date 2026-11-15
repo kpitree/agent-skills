@@ -28,5 +28,5 @@ Skills, agents and commands are auto-discovered. Do not add manifest registratio
 - Run `python3 evals/ci/validate.py` and `python3 -m unittest discover -s evals/ci -p 'test_*.py'` before marking work ready.
 - Exercise behaviour-changing skill or agent updates against a real KPI Tree workspace through the connector before marking the work ready.
 - Add or update routing cases when a description changes.
-- If distributed behaviour changes, bump `versions.json`, run `python3 .github/scripts/stamp_versions.py`, and add a `CHANGELOG.md` entry in the same pull request. CI checks the stamped manifests; it does not create a follow-up pull request.
+- If distributed behaviour changes, bump the version in every manifest (`.claude-plugin/plugin.json`, both places in `.claude-plugin/marketplace.json`, and `plugin.json`) to the same number, and add a `CHANGELOG.md` entry in the same pull request. CI does not create a follow-up pull request.
 - Documentation-only changes to `README.md`, `CONTRIBUTING.md`, `AGENTS.md`, `CHANGELOG.md` or `evals/` usually need no version bump.

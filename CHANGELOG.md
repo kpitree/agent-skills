@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to this repository are documented in this file. The version in `versions.json` is stamped into every manifest, so one number identifies one commit of this repo.
+All notable changes to this repository are documented in this file. Every manifest carries the same version, so one number identifies one commit of this repo.
 
 ## [1.0.0] - 2026-11-08
 

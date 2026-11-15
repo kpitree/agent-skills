@@ -78,7 +78,6 @@ Before opening a pull request:
 ```bash
 python3 evals/ci/validate.py                                   # tier 0
 python3 -m unittest discover -s evals/ci -p 'test_*.py'
-python3 .github/scripts/stamp_versions.py --check
 claude plugin validate . --profile directory                   # what the Claude directory checks
 ```
 
@@ -117,16 +116,15 @@ Semantic versioning, always three components:
 
 CI does not infer the level; pick it with the table above.
 
-### One version, one place
+### One version, written in each manifest
 
-`versions.json` at the repo root is the single source of truth. For a release, edit it, then stamp and verify the manifests before committing:
+The version is written by hand in the manifests, and every manifest carries the same number:
 
-```bash
-python3 .github/scripts/stamp_versions.py          # rewrite the manifests
-python3 .github/scripts/stamp_versions.py --check  # verify they match
-```
+- `.claude-plugin/plugin.json` (`version`)
+- `.claude-plugin/marketplace.json` (`metadata.version` and the plugin entry's `version`)
+- `plugin.json` (`version`)
 
-Commit `versions.json`, the stamped manifests and the changelog entry in the same pull request. Every manifest (Claude and Agent Plugins) ships from the same commit, so one number identifies one commit of this repo.
+For a release, set all four to the new number and commit them with the changelog entry in the same pull request. Every manifest (Claude and Agent Plugins) ships from the same commit, so one number identifies one commit of this repo.
 
 Document user-visible changes in `CHANGELOG.md` under the version, with `Added`, `Changed` and `Fixed` sections and the release date:
 
@@ -150,7 +148,7 @@ Document user-visible changes in `CHANGELOG.md` under the version, with `Added`,
 - [ ] Only the recommended period comparisons are recommended
 - [ ] Behaviour was exercised end to end against a real workspace where relevant
 - [ ] Routing cases were added or updated if a description changed
-- [ ] `versions.json` was bumped and the manifests stamped if distributed behaviour changed
+- [ ] The version was bumped in every manifest if distributed behaviour changed
 - [ ] `CHANGELOG.md` was updated if distributed behaviour changed
 - [ ] `python3 evals/ci/validate.py` and `git diff --check` pass
 

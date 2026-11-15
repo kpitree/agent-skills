@@ -15,7 +15,6 @@ on:
       - ".claude-plugin/**"
       - ".agents/**"
       - ".github/workflows/skills-ci.yml"
-      - ".github/scripts/**"
   push:
     branches: [master, main]
   workflow_dispatch:

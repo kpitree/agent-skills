@@ -210,15 +210,13 @@ Releases are recorded in `CHANGELOG.md`. If a tool refuses or is missing for you
 agent-skills/
 ├── .claude-plugin/
 │   ├── marketplace.json       # Claude Code marketplace (also read by Codex)
-│   ├── plugin.json            # Claude plugin manifest
-│   └── icon.png
+│   └── plugin.json            # Claude plugin manifest
 ├── .agents/plugins/
 │   └── marketplace.json       # Codex marketplace
 ├── .mcp.json                  # the connector, for Claude Code
 ├── mcp.json                   # the connector, for ChatGPT and Codex (Agent Plugins format)
 ├── plugin.json                # Agent Plugins manifest (ChatGPT, Codex)
 ├── catalogue.json             # the connector's tools and comparisons, published from the connector
-├── versions.json              # the one version every manifest carries
 ├── skills/
 │   ├── kpitree-basics/
 │   ├── kpitree-investigate/
